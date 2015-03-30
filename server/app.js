@@ -27,6 +27,7 @@ app.use(cookieParser());
   app.use(express.static(path.join(__dirname, '../client/.tmp')));
   app.use(express.static(path.join(__dirname, '../client/app')));
 
+
   // Error handling
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);

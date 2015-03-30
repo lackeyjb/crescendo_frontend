@@ -13,7 +13,7 @@ angular.module('crescendoApp')
 
   that.getSession = function() {
     var deferred = $http.get('https://crescendo-api.herokuapp.com/api/sessions');
-    deferred.succes(function(user) {
+    deferred.success(function(user) {
       console.log('getSession returned user = ' + JSON.stringify(user));
       that.currentUser = user;
     });

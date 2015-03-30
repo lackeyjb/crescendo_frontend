@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('crescendoApp')
-.controller('AuthCtrl', ['$scope', '$rootScope', '$AuthService',
+.controller('AuthCtrl', ['$scope', '$rootScope', 'AuthService',
   function($scope, $rootScope, AuthService) {
 
   $scope.register = function() {
