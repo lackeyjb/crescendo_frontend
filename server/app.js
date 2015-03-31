@@ -47,17 +47,21 @@ app.use(cookieParser());
  /**
  * Production Settings
  */
+if (app.get('env') === 'production') {
 
- if (app.get('env') === 'production') {
-  app.use(express.static(path.join(__dirname, '/dist')));
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    // changes it to use the optimized version for production
+    app.use(express.static(path.join(__dirname, '/dist')));
+
+    // production error handler
+    // no stacktraces leaked to user
+    app.use(function(err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: {}
+        });
     });
-  });
- }
+}
 
 
 module.exports = app;
