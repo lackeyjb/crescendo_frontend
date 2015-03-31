@@ -1,0 +1,26 @@
+<div>
+  <div>
+    <h1>log In</h1>
+  </div>
+
+  <form name="loginForm" ng-submit="login()" novalidate>
+    <div>
+      <input type="email"
+             name="email"    
+             placeholder="Email"
+             ng-model="session.email"
+             required>
+    </div>
+    <div>
+      <input type="password"
+             name="password"
+             placeholder="Password"
+             ng-model="session.password"
+             required>
+    </div>
+    <br>
+    <button type="submit"
+            ng-disabled="loginForm.$invalid">login</button>
+  </form>
+  <a ui-sref="register">Not a member?</a>
+</div>

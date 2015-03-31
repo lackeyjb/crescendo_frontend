@@ -12,8 +12,8 @@ angular.module('crescendoApp')
   };
 
   that.getSession = function() {
-    var deferred = $http.get('https://crescendo-api.herokuapp.com/api/sessions');
-    deferred.succes(function(user) {
+    var deferred = $http.get('/api/sessions/');
+    deferred.success(function(user) {
       console.log('getSession returned user = ' + JSON.stringify(user));
       that.currentUser = user;
     });
@@ -24,7 +24,7 @@ angular.module('crescendoApp')
 
   that.register = function(user) {
 
-    var deferred = $http.post('https://crescendo-api.herokuapp.com/api/users',
+    var deferred = $http.post('/api/users/',
       { user: user });
     deferred.success(function(user) {
       that.currentUser = user;
@@ -34,7 +34,7 @@ angular.module('crescendoApp')
 
   that.login = function(session) {
 
-    var deferred = $http.post('https://crescendo-api.herokuapp.com/api/sessions', 
+    var deferred = $http.post('/api/sessions/', 
       { session: session });
     deferred.success(function(user) {
       that.currentUser = user;
@@ -44,7 +44,7 @@ angular.module('crescendoApp')
 
   that.logout = function() {
 
-    var deferred = $http.delete('https://crescendo-api.herokuapp.com/api/sessions');
+    var deferred = $http.delete('/api/sessions/');
     deferred.success(function() { 
       that.currentUser = null;
     });
