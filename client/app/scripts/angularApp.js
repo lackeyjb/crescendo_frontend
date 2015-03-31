@@ -19,8 +19,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(['$httpProvider', '$stateProvider', '$urlRouterProvider', 
-    function ($httpProvider, $stateProvider, $urlRouterProvider) {
+  .config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
 
     $httpProvider.defaults.withCredentials = true;
 
@@ -47,4 +46,4 @@ angular
       });
       
       $urlRouterProvider.otherwise('/');
-  }]);
+  });

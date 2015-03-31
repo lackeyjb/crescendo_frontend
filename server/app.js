@@ -46,8 +46,7 @@ app.use(cookieParser());
  /**
  * Production Settings
  */
-
- if (app.get('env') === 'production') {
+if (app.get('env') === 'production') {
 
     // changes it to use the optimized version for production
     app.use(express.static(path.join(__dirname, '/dist')));
