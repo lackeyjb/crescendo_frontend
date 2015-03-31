@@ -1,6 +1,10 @@
 // bower:scss
 // endbower
 
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
