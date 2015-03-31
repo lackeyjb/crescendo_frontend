@@ -42,6 +42,11 @@ angular.module('crescendoApp')
       $state.go('home');
     });
 
+    $rootScope.$on('auth:login', function(event, user) {    
+      $scope.user = user;
+      $state.go('home');
+    });
+
     $rootScope.$on('auth:logout', function(/* event, user */) {
       $scope.user = null;
       $state.go('home');
