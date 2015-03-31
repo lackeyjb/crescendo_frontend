@@ -34,6 +34,16 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .state('game1', {
+        url: '/game1',
+        templateUrl: 'views/game1.html',
+        controller: 'Game1Ctrl',
+        onEnter: ['$state', 'AuthService', function ($state, AuthService) {
+          if (!AuthService.isAuthenticated()) {
+            $state.go('home');
+          }
+        }]
+      })
       .state('login', {
         url: '/login',
         templateUrl: 'views/login.html',
