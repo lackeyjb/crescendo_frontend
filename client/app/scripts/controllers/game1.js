@@ -1,143 +1,204 @@
 'use strict';
 
 angular.module('crescendoApp')
-.controller('Game1Ctrl', ['$scope', function ($scope) {
+.controller('Game1Ctrl', [function () {
 
-  var game = new Phaser.Game(800, 600, Phaser.AUTO, 'gameview', { preload: preload, create: create,
-                                                          update: update });
+  var game = new Phaser.Game(640, 480, Phaser.AUTO, 'gameview');
 
-  function preload() {
-    game.load.image('sky', 'images/sky.png');
-    game.load.image('ground', 'images/platform.png');
-    game.load.image('star', 'images/a-bubble.png');
-    game.load.spritesheet('dude', 'images/dude.png', 32, 48);
-  }
+  var PhaserGame = function () {
 
-  var player;
-  var platforms;
-  var cursors;
+    this.player = null;
+    this.platforms = null;
+    this.sky = null;
 
-  var stars;
-  var score = 0;
-  var scoreText;
+    this.facing = 'left';
+    this.edgeTimer = 0;
+    this.jumpTimer = 0;
 
-  function create() {
+    this.wasStanding = false;
+    this.cursors = null;
+  };
 
-      //  We're going to be using physics, so enable the Arcade Physics system
-      game.physics.startSystem(Phaser.Physics.ARCADE);
+  PhaserGame.prototype = {
 
-      //  A simple background for our game
-      game.add.sprite(0, 0, 'sky');
+    init: function () {
 
-      //  The platforms group contains the ground and the 2 ledges we can jump on
-      platforms = game.add.group();
+      this.game.renderer.renderSession.roundPixels = true;
 
-      //  We will enable physics for any object that is created in this group
-      platforms.enableBody = true;
+      this.world.resize(640, 2000);
 
-      // Here we create the ground.
-      var ground = platforms.create(0, game.world.height - 64, 'ground');
+      this.physics.startSystem(Phaser.Physics.ARCADE);
 
-      //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-      ground.scale.setTo(2, 2);
+      this.physics.arcade.gravity.y = 750;
+      this.physics.arcade.skipQuadtree = false;
 
-      //  This stops it from falling away when you jump on it
-      ground.body.immovable = true;
+    },
 
-      //  Now let's create two ledges
-      var ledge = platforms.create(400, 400, 'ground');
-      ledge.body.immovable = true;
+    preload: function () {
 
-      ledge = platforms.create(-150, 250, 'ground');
-      ledge.body.immovable = true;
+      this.load.image('trees', 'images/trees.png');
+      this.load.image('clouds', 'images/clouds.png');
+      this.load.image('platform', 'images/moving_platform.png');
+      this.load.image('ice-platform', 'images/ice-platform.png');
+      this.load.spritesheet('dude', 'images/crescendodude.png', 49.6, 68);
+    },
 
-       // The player and its settings
-      player = game.add.sprite(32, game.world.height - 150, 'dude');
+    create: function () {
 
-      //  We need to enable physics on the player
-      game.physics.arcade.enable(player);
+      this.stage.backgroundColor = '#2f9acc';
 
-      //  Player physics properties. Give the little guy a slight bounce.
-      player.body.bounce.y = 0.2;
-      player.body.gravity.y = 300;
-      player.body.collideWorldBounds = true;
+      this.sky = this.add.tileSprite(0, 0, 640, 480, 'clouds');
+      this.sky.fixedToCamera = true;
 
-      //  Our two animations, walking left and right.
-      player.animations.add('left', [0, 1, 2, 3], 10, true);
-      player.animations.add('right', [5, 6, 7, 8], 10, true);
+      this.add.sprite(0, 1906, 'trees');
 
-      stars = game.add.group();
+      this.platforms = this.add.physicsGroup();
 
-      stars.enableBody = true;
+      var x = 0;
+      var y = 64;
 
-      //  Here we'll create 12 of them evenly spaced apart
-      for (var i = 0; i < 12; i++)
-      {
-          //  Create a star inside of the 'stars' group
-          var star = stars.create(i * 70, 0, 'star');
+      for (var i = 0; i < 19; i++) {
 
-          //  Let gravity do its thing
-          star.body.gravity.y = 9;
+        var type = i % 2 === 1 ? 'platform' : 'ice-platform';
+        var platform = this.platforms.create(x, y, type);
 
-          //  This just gives each star a slightly random bounce value
-          star.body.bounce.y = 0.7 + Math.random() * 0.2;
+        platform.body.velocity.x = this.rnd.between(100, 150);
+
+        if (Math.random() > 0.5) {
+          platform.body.velocity.x *= -1;
+        }
+
+        x += 200;
+
+        if (x >= 600) {
+          x = 0;
+        }
+
+        y+= 104;
       }
 
-      scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' 
-      });
+      this.platforms.setAll('body.allowGravity', false);
 
-      //  Our controls.
-      cursors = game.input.keyboard.createCursorKeys();
-  }
+      this.platforms.setAll('body.immovable', true);
 
-  function update() {
+      this.player = this.add.sprite(320, 1952, 'dude');
 
-    //  Collide the player and the stars with the platforms
-      game.physics.arcade.collide(player, platforms);
-      game.physics.arcade.collide(stars, platforms);
+      this.physics.arcade.enable(this.player);
 
-      //  Checks to see if the player overlaps with any of the stars, if he does call the collectStar function
-      game.physics.arcade.overlap(player, stars, collectStar, null, this);
+      this.player.body.collideWorldBounds = true;
+      this.player.body.setSize(45, 52, 0, 16);
 
-      //  Reset the players velocity (movement)
-      player.body.velocity.x = 0;
+      this.player.animations.add('left',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+                                   13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
+      // this.player.animations.add('turn', [4], 20, true);
+      this.player.animations.add('right',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+                                   13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
 
-      if (cursors.left.isDown)
-      {
-          //  Move to the left
-          player.body.velocity.x = -200;
+      this.camera.follow(this.player);
 
-          player.animations.play('left');
+      this.cursors = this.input.keyboard.createCursorKeys();
+    },
+
+    wrapPlatform: function (platform) {
+
+      if (platform.body.velocity.x < 0 && platform.x <= -160) {
+        platform.x = 640;
       }
-      else if (cursors.right.isDown)
-      {
-          //  Move to the right
-          player.body.velocity.x = 200;
-
-          player.animations.play('right');
+      else if (platform.body.velocity.x > 0 && platform.x >= 640) {
+        platform.x = -160;
       }
-      else
-      {
-          //  Stand still
-          player.animations.stop();
+    },
 
-          player.frame = 4;
+    setFriction: function (player, platform) {
+
+      if (platform.key === 'ice-platform') {
+        player.body.x -= platform.body.x - platform.body.prev.x;
+      }
+    },
+
+    update: function () {
+
+      this.sky.tilePosition.y = -(this.camera.y * 0.7);
+
+      this.platforms.forEach(this.wrapPlatform, this);
+
+      this.physics.arcade.collide(this.player, this.
+        platforms, this.setFriction, null, this);
+
+      var standing = this.player.body.blocked.down ||
+      this.player.body.touching.down;
+
+      this.player.body.velocity.x = 0;
+
+      if (this.cursors.left.isDown) {
+
+        this.player.body.velocity.x = -200;
+
+        if (this.facing !== 'left') {
+
+          this.player.anchor.setTo(0.5, 0);
+          this.player.scale.x = -1;
+          this.player.play('left');
+          this.facing = 'left';
+        }
+      }
+      else if (this.cursors.right.isDown) {
+
+        this.player.body.velocity.x = 200;
+
+        if (this.facing !== 'right') {
+
+          this.player.scale.x = 1;
+          this.player.play('right');
+          this.facing = 'right';
+        }
+      }
+      else {
+
+        if (this.facing !== 'idle') {
+
+          this.player.animations.stop();
+
+          if (this.facing === 'left') {
+
+            this.player.frame = 0;
+          }
+          else {
+
+            this.player.frame = 5;
+          }
+          this.facing = 'idle';
+        }
       }
 
-      //  Allow the player to jump if they are touching the ground.
-      if (cursors.up.isDown && player.body.touching.down)
-      {
-          player.body.velocity.y = -320;
+      if (!standing && this.wasStanding) {
+
+        this.edgeTimer = this.time.time + 250;
       }
-  }
 
-  function collectStar (player, star) {
+      if ((standing || this.time.time <= this.edgeTimer) &&
+        this.cursors.up.isDown && this.time.time > this.jumpTimer) {
 
-        // Removes the star from the screen
-        star.kill();
+        this.player.body.velocity.y = -500;
+        this.jumpTimer = this.time.time + 750;
+      }
 
-        //  Add and update the score
-        score += 10;
-        scoreText.text = 'Score: ' + score;
-  }
+      this.wasStanding = standing;
+    }
+
+    // render: function () {
+    //   this.game.debug.body(this.player);
+    // }
+  };
+
+  game.state.add('Game', PhaserGame, true);
+
 }]);
+
+
+
+
+
+
+
+
