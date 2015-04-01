@@ -109,13 +109,17 @@ angular.module('crescendoApp')
     {
         //  Move to the left
         player.body.velocity.x = -200;
-
+        player.anchor.setTo(0.5, 0); //so it flips around its middle
+        
+        player.scale.x = -1; //flipped
         player.animations.play('left');
     }
     else if (cursors.right.isDown)
     {
         //  Move to the right
         player.body.velocity.x = 200;
+        //player.anchor.setTo(0.5, 1); //so it flips around its middle
+        player.scale.x = 1; //facing default direction
 
         player.animations.play('right');
     }
