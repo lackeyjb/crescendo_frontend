@@ -53,6 +53,7 @@ angular.module('crescendoApp')
 
       this.sky = this.add.tileSprite(0, 0, 640, 480, 'clouds');
       this.sky.fixedToCamera = true;
+      // this.scoreText.fixedToCamera = true;
 
       this.add.sprite(0, 1906, 'trees');
 
@@ -107,13 +108,14 @@ angular.module('crescendoApp')
 
         var bubble = this.bubbles.create(i * 70, 0, 'bubble');
 
-        // bubble.body.gravity.y = 100;
+        bubble.body.gravity.y = 86;
+        // bubble.body.gravity.y = 9;
 
-        // bubble.body.bounce.y = 0.7 + Math.Random() * 0.2;
+        bubble.body.bounce.y = 0.7 + Math.random() * 0.2;
       }
 
-      // this.scoreText = game.add.text(16, 16, 'score: 0', 
-        // { fontSize: '32px', fill: '#000' });
+      this.scoreText = game.add.text(16, 16, 'score: 0', 
+        { fontSize: '32px', fill: '#000' });
 
       this.cursors = this.input.keyboard.createCursorKeys();
     },
@@ -212,6 +214,8 @@ angular.module('crescendoApp')
     collectBubble: function(player, bubble) {
 
       bubble.kill();
+      this.score += 10;
+      this.scoreText.text = 'Score: ' + this.score;
     }
 
     // render: function () {
