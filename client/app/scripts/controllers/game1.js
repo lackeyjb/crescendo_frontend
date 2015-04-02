@@ -10,6 +10,9 @@ angular.module('crescendoApp')
     this.player = null;
     this.platforms = null;
     this.sky = null;
+    this.bubbles = null;
+    this.score = 0;
+    this.scoreText = 0;
 
     this.facing = 'left';
     this.edgeTimer = 0;
@@ -38,6 +41,7 @@ angular.module('crescendoApp')
 
       this.load.image('trees', 'images/trees.png');
       this.load.image('clouds', 'images/clouds.png');
+      this.load.image('bubble', 'images/a-bubble.png');
       this.load.image('platform', 'images/moving_platform.png');
       this.load.image('ice-platform', 'images/ice-platform.png');
       this.load.spritesheet('dude', 'images/crescendodude.png', 49.6, 68);
@@ -49,6 +53,7 @@ angular.module('crescendoApp')
 
       this.sky = this.add.tileSprite(0, 0, 640, 480, 'clouds');
       this.sky.fixedToCamera = true;
+      // this.scoreText.fixedToCamera = true;
 
       this.add.sprite(0, 1906, 'trees');
 
@@ -90,11 +95,26 @@ angular.module('crescendoApp')
 
       this.player.animations.add('left',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
                                    13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
-      // this.player.animations.add('turn', [4], 20, true);
+
       this.player.animations.add('right',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
                                    13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
 
       this.camera.follow(this.player);
+
+      this.bubbles = game.add.group();
+      this.bubbles.enableBody = true;
+
+      for (i = 0; i < 12; i++) {
+
+        var bubble = this.bubbles.create(i * 70, 0, 'bubble');
+
+        bubble.body.bounce.y = 0.7 + Math.random() * 0.2;
+
+        bubble.body.gravity.y = -720;
+      }
+
+      this.scoreText = game.add.text(16, 16, 'score: 0', 
+        { fontSize: '32px', fill: '#000' });
 
       this.cursors = this.input.keyboard.createCursorKeys();
     },
@@ -104,6 +124,7 @@ angular.module('crescendoApp')
       if (platform.body.velocity.x < 0 && platform.x <= -160) {
         platform.x = 640;
       }
+
       else if (platform.body.velocity.x > 0 && platform.x >= 640) {
         platform.x = -160;
       }
@@ -124,6 +145,10 @@ angular.module('crescendoApp')
 
       this.physics.arcade.collide(this.player, this.
         platforms, this.setFriction, null, this);
+
+      this.physics.arcade.collide(this.bubbles, this.platforms);
+
+      this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
 
       var standing = this.player.body.blocked.down ||
       this.player.body.touching.down;
@@ -184,6 +209,13 @@ angular.module('crescendoApp')
       }
 
       this.wasStanding = standing;
+    },
+
+    collectBubble: function(player, bubble) {
+
+      bubble.kill();
+      this.score += 10;
+      this.scoreText.text = 'Score: ' + this.score;
     }
 
     // render: function () {
