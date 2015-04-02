@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('crescendoApp')
-.controller('Game1Ctrl', [function () {
+.controller('Game1Ctrl', [ function () {
 
   var game = new Phaser.Game(640, 480, Phaser.AUTO, 'gameview');
 
@@ -159,9 +159,6 @@ angular.module('crescendoApp')
       var standing = this.player.body.blocked.down ||
       this.player.body.touching.down;
 
-      console.log(this.camera.x);
-      console.log(this.camera.y);
-
       this.scoreText.x = this.camera.x;
       this.scoreText.y = this.camera.y;
 
@@ -239,20 +236,24 @@ angular.module('crescendoApp')
     },
 
     bubbleSpawn: function () {
-      this.bubbles = game.add.group();
-      this.bubbles.enableBody = true;
+      var self = this;
+      self.bubbles = game.add.group();
+      self.bubbles.enableBody = true;
+
 
       for (var i = 0; i < 12; i++) {
-
-        var bubble = this.bubbles.create(i * 70, (this.camera.screenView.height + 1000), this.bubbleRandomizer());
+        
+        var bubble = self.bubbles.create(i * 70, (self.camera.screenView.height + 1000), self.bubbleRandomizer());
         // console.log(this.camera.height);
         // console.log(this.camera);
-
+      
         bubble.body.bounce.y = 0.9 + Math.random() * 0.2;
         bubble.body.collideWorldBounds = true;
 
-        bubble.body.gravity.y = -720;
+        bubble.body.gravity.y = Math.floor((Math.random() * -200) + (-600));
       }
+
+  
     }
 
     // render: function () {
