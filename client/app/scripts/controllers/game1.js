@@ -101,6 +101,8 @@ angular.module('crescendoApp')
       this.physics.arcade.enable(this.player);
 
       this.player.body.collideWorldBounds = true;
+
+
       this.player.body.setSize(45, 52, 0, 16);
 
       this.player.animations.add('left',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
@@ -147,6 +149,8 @@ angular.module('crescendoApp')
         platforms, this.setFriction, null, this);
 
       this.physics.arcade.collide(this.bubbles, this.platforms);
+
+      this.physics.arcade.collide(this.bubbles);
 
       this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
 
@@ -235,7 +239,8 @@ angular.module('crescendoApp')
         // console.log(this.camera.height);
         // console.log(this.camera);
 
-        bubble.body.bounce.y = 0.7 + Math.random() * 0.2;
+        bubble.body.bounce.y = 0.9 + Math.random() * 0.2;
+        bubble.body.collideWorldBounds = true;
 
         bubble.body.gravity.y = -720;
       }
