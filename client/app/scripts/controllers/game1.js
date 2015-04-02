@@ -41,7 +41,18 @@ angular.module('crescendoApp')
 
       this.load.image('trees', 'images/trees.png');
       this.load.image('clouds', 'images/clouds.png');
-      this.load.image('bubble', 'images/a-bubble.png');
+      this.load.image('bubbleA', 'images/a-bubble.png');
+      this.load.image('bubbleAsh', 'images/a-sh-bubble.png');
+      this.load.image('bubbleB', 'images/b-bubble.png');
+      this.load.image('bubbleC', 'images/c-bubble.png');
+      this.load.image('bubbleCsh', 'images/c-sh-bubble.png');
+      this.load.image('bubbleD', 'images/d-bubble.png');
+      this.load.image('bubbleDsh', 'images/d-sh-bubble.png');
+      this.load.image('bubbleE', 'images/e-bubble.png');
+      this.load.image('bubbleF', 'images/f-bubble.png');
+      this.load.image('bubbleFsh', 'images/f-sh-bubble.png');
+      this.load.image('bubbleG', 'images/g-bubble.png');
+      this.load.image('bubbleGsh', 'images/g-sh-bubble.png');
       this.load.image('platform', 'images/moving_platform.png');
       this.load.image('ice-platform', 'images/ice-platform.png');
       this.load.spritesheet('dude', 'images/crescendodude.png', 49.6, 68);
@@ -90,6 +101,8 @@ angular.module('crescendoApp')
       this.physics.arcade.enable(this.player);
 
       this.player.body.collideWorldBounds = true;
+
+
       this.player.body.setSize(45, 52, 0, 16);
 
       this.player.animations.add('left',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
@@ -138,6 +151,8 @@ angular.module('crescendoApp')
         platforms, this.setFriction, null, this);
 
       this.physics.arcade.collide(this.bubbles, this.platforms);
+
+      this.physics.arcade.collide(this.bubbles);
 
       this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
 
@@ -209,16 +224,25 @@ angular.module('crescendoApp')
       this.scoreText.text = 'Score: ' + this.score;
     },
 
+    bubbleRandomizer: function() {
+      // var AllNotes = ['bubbleA', 'bubbleB'];
+      // return 'bubbleA';
+      return _.sample(['bubbleA', 'bubbleAsh', 'bubbleB', 'bubbleC', 'bubbleCsh', 'bubbleD', 
+                      'bubbleDsh', 'bubbleE', 'bubbleF', 'bubbleFsh', 'bubbleG', 'bubbleGsh']);
+    },
+
     bubbleSpawn: function () {
       this.bubbles = game.add.group();
       this.bubbles.enableBody = true;
 
       for (var i = 0; i < 12; i++) {
 
-        var bubble = this.bubbles.create(i * 70, (this.camera.screenView.height + 1000), 'bubble');
-        console.log(this.camera);
-        
-        bubble.body.bounce.y = 0.7 + Math.random() * 0.2;
+        var bubble = this.bubbles.create(i * 70, (this.camera.screenView.height + 1000), this.bubbleRandomizer());
+        // console.log(this.camera.height);
+        // console.log(this.camera);
+
+        bubble.body.bounce.y = 0.9 + Math.random() * 0.2;
+        bubble.body.collideWorldBounds = true;
 
         bubble.body.gravity.y = -720;
       }
