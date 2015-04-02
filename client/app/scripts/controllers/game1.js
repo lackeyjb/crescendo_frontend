@@ -26,7 +26,7 @@ angular.module('crescendoApp')
 
     init: function () {
 
-      this.game.renderer.renderSession.roundPixels = true;
+      // this.game.renderer.renderSession.roundPixels = true;
 
       this.world.resize(640, 2000);
 
@@ -53,7 +53,6 @@ angular.module('crescendoApp')
 
       this.sky = this.add.tileSprite(0, 0, 640, 480, 'clouds');
       this.sky.fixedToCamera = true;
-      // this.scoreText.fixedToCamera = true;
 
       this.add.sprite(0, 1906, 'trees');
 
@@ -100,23 +99,15 @@ angular.module('crescendoApp')
                                    13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
 
       this.camera.follow(this.player);
+      console.log(this.camera.view);
 
-      this.bubbles = game.add.group();
-      this.bubbles.enableBody = true;
-
-      for (i = 0; i < 12; i++) {
-
-        var bubble = this.bubbles.create(i * 70, 0, 'bubble');
-
-        bubble.body.bounce.y = 0.7 + Math.random() * 0.2;
-
-        bubble.body.gravity.y = -720;
-      }
+      this.bubbleSpawn();
 
       this.scoreText = game.add.text(16, 16, 'score: 0', 
         { fontSize: '32px', fill: '#000' });
 
       this.cursors = this.input.keyboard.createCursorKeys();
+      this.jump = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
 
     wrapPlatform: function (platform) {
@@ -202,7 +193,7 @@ angular.module('crescendoApp')
       }
 
       if ((standing || this.time.time <= this.edgeTimer) &&
-        this.cursors.up.isDown && this.time.time > this.jumpTimer) {
+        (this.cursors.up.isDown || this.jump.isDown) && this.time.time > this.jumpTimer) {
 
         this.player.body.velocity.y = -500;
         this.jumpTimer = this.time.time + 750;
@@ -216,6 +207,21 @@ angular.module('crescendoApp')
       bubble.kill();
       this.score += 10;
       this.scoreText.text = 'Score: ' + this.score;
+    },
+
+    bubbleSpawn: function () {
+      this.bubbles = game.add.group();
+      this.bubbles.enableBody = true;
+
+      for (var i = 0; i < 12; i++) {
+
+        var bubble = this.bubbles.create(i * 70, (this.camera.screenView.height + 1000), 'bubble');
+        console.log(this.camera);
+        
+        bubble.body.bounce.y = 0.7 + Math.random() * 0.2;
+
+        bubble.body.gravity.y = -720;
+      }
     }
 
     // render: function () {
