@@ -20,6 +20,10 @@ angular.module('crescendoApp')
 
     this.wasStanding = false;
     this.cursors = null;
+
+    this.gameBubbleCollection = [];
+    this.cMajorScale = ['bubbleC', 'bubbleD', 'bubbleE', 'bubbleF', 'bubbleG',
+                      'bubbleF', 'bubbleA', 'bubbleB'];
   };
 
   PhaserGame.prototype = {
@@ -112,7 +116,6 @@ angular.module('crescendoApp')
                                    13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
 
       this.camera.follow(this.player);
-      console.log(this.camera.view);
 
       this.bubbleSpawn();
 
@@ -221,16 +224,7 @@ angular.module('crescendoApp')
       this.wasStanding = standing;
     },
 
-    collectBubble: function(player, bubble) {
-
-      bubble.kill();
-      this.score += 10;
-      this.scoreText.text = 'Score: ' + this.score;
-    },
-
     bubbleRandomizer: function() {
-      // var AllNotes = ['bubbleA', 'bubbleB'];
-      // return 'bubbleA';
       return _.sample(['bubbleA', 'bubbleAsh', 'bubbleB', 'bubbleC', 'bubbleCsh', 'bubbleD', 
                       'bubbleDsh', 'bubbleE', 'bubbleF', 'bubbleFsh', 'bubbleG', 'bubbleGsh']);
     },
@@ -246,15 +240,31 @@ angular.module('crescendoApp')
         var bubble = self.bubbles.create(i * 70, (self.camera.screenView.height + 1000), self.bubbleRandomizer());
         // console.log(this.camera.height);
         // console.log(this.camera);
+
+        this.gameBubbleCollection.push(bubble);
       
         bubble.body.bounce.y = 0.9 + Math.random() * 0.2;
         bubble.body.collideWorldBounds = true;
 
         bubble.body.gravity.y = Math.floor((Math.random() * -200) + (-600));
       }
+    },
 
-  
-    }
+    collectBubble: function(player, bubble) {
+
+      bubble.kill();
+     
+      // console.log( _.contains(this.cMajorScale, bubble.key.toString()) );
+      if (_.contains(this.cMajorScale, bubble.key.toString())) {
+        this.score += 10;
+        this.scoreText.text = 'Score: ' + this.score;
+      }
+      else {
+        this.score -= 10;
+        this.scoreText.text = 'Score: ' + this.score;
+      }
+
+    }  
 
     // render: function () {
     //   this.game.debug.body(this.player);
