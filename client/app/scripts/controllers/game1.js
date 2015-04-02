@@ -26,7 +26,7 @@ angular.module('crescendoApp')
 
     init: function () {
 
-      this.game.renderer.renderSession.roundPixels = true;
+      // this.game.renderer.renderSession.roundPixels = true;
 
       this.world.resize(640, 2000);
 
@@ -53,7 +53,6 @@ angular.module('crescendoApp')
 
       this.sky = this.add.tileSprite(0, 0, 640, 480, 'clouds');
       this.sky.fixedToCamera = true;
-      // this.scoreText.fixedToCamera = true;
 
       this.add.sprite(0, 1906, 'trees');
 
@@ -101,17 +100,7 @@ angular.module('crescendoApp')
 
       this.camera.follow(this.player);
 
-      this.bubbles = game.add.group();
-      this.bubbles.enableBody = true;
-
-      for (i = 0; i < 12; i++) {
-
-        var bubble = this.bubbles.create(i * 70, 0, 'bubble');
-
-        bubble.body.bounce.y = 0.7 + Math.random() * 0.2;
-
-        bubble.body.gravity.y = -720;
-      }
+      this.bubbleSpawn();
 
       this.scoreText = game.add.text(16, 16, 'score: 0', 
         { fontSize: '32px', fill: '#000' });
@@ -216,6 +205,22 @@ angular.module('crescendoApp')
       bubble.kill();
       this.score += 10;
       this.scoreText.text = 'Score: ' + this.score;
+    },
+
+    bubbleSpawn: function () {
+      this.bubbles = game.add.group();
+      this.bubbles.enableBody = true;
+
+      for (var i = 0; i < 12; i++) {
+
+        var bubble = this.bubbles.create(i * 70, (this.camera.screenView.height + 1000), 'bubble');
+        console.log(this.camera.height);
+        console.log(this.camera);
+
+        bubble.body.bounce.y = 0.7 + Math.random() * 0.2;
+
+        bubble.body.gravity.y = -720;
+      }
     }
 
     // render: function () {
