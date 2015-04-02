@@ -159,6 +159,13 @@ angular.module('crescendoApp')
       var standing = this.player.body.blocked.down ||
       this.player.body.touching.down;
 
+      console.log(this.camera.x);
+      console.log(this.camera.y);
+
+      this.scoreText.x = this.camera.x;
+      this.scoreText.y = this.camera.y;
+
+
       this.player.body.velocity.x = 0;
 
       if (this.cursors.left.isDown) {
