@@ -221,10 +221,17 @@ angular.module('crescendoApp')
       this.wasStanding = standing;
     },
 
-    collectBubble: function(player, bubble) {
+    collectgoodBubble: function(player, bubble) {
 
       bubble.kill();
       this.score += 10;
+      this.scoreText.text = 'Score: ' + this.score;
+    },
+
+    collectbadBubble: function(player, bubble) {
+
+      bubble.kill();
+      this.score -= 10;
       this.scoreText.text = 'Score: ' + this.score;
     },
 
