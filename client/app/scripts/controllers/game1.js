@@ -112,6 +112,7 @@ angular.module('crescendoApp')
                                    13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
 
       this.camera.follow(this.player);
+      console.log(this.camera.view);
 
       this.bubbleSpawn();
 
@@ -119,6 +120,7 @@ angular.module('crescendoApp')
         { fontSize: '32px', fill: '#000' });
 
       this.cursors = this.input.keyboard.createCursorKeys();
+      this.jump = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
 
     wrapPlatform: function (platform) {
@@ -206,7 +208,7 @@ angular.module('crescendoApp')
       }
 
       if ((standing || this.time.time <= this.edgeTimer) &&
-        this.cursors.up.isDown && this.time.time > this.jumpTimer) {
+        (this.cursors.up.isDown || this.jump.isDown) && this.time.time > this.jumpTimer) {
 
         this.player.body.velocity.y = -500;
         this.jumpTimer = this.time.time + 750;
