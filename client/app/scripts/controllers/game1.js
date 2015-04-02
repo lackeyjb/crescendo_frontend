@@ -95,7 +95,7 @@ angular.module('crescendoApp')
 
       this.player.animations.add('left',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
                                    13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
-      // this.player.animations.add('turn', [4], 20, true);
+
       this.player.animations.add('right',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
                                    13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
 
@@ -108,10 +108,9 @@ angular.module('crescendoApp')
 
         var bubble = this.bubbles.create(i * 70, 0, 'bubble');
 
-        bubble.body.gravity.y = 86;
-        // bubble.body.gravity.y = 9;
-
         bubble.body.bounce.y = 0.7 + Math.random() * 0.2;
+
+        bubble.body.gravity.y = -720;
       }
 
       this.scoreText = game.add.text(16, 16, 'score: 0', 
@@ -125,6 +124,7 @@ angular.module('crescendoApp')
       if (platform.body.velocity.x < 0 && platform.x <= -160) {
         platform.x = 640;
       }
+
       else if (platform.body.velocity.x > 0 && platform.x >= 640) {
         platform.x = -160;
       }
