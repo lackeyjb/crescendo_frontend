@@ -20,30 +20,28 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a ui-sref="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
- 
-          <lateral-slide-menu ng-cloak>
-            <ul>
-              <li ng-repeat="tab in tabs"
-                  ng-show="showTab(tab)"
-                  ng-class="getTabClass(tab)">
-                <a ui-sref="{{ tab.state }}">{{ tab.label }}</a>
-              </li>
-              <li ng-hide="isAuthenticated()"><a ui-sref="login">Login</a></li>
-              <li ng-hide="isAuthenticated()"><a ui-sref="register">Sign up</a></li>
-              <li ng-show="isAuthenticated()"><a>{{ user ? "Welcome, " + user.username : '' }}</a></li>
-              <li ng-show="isAuthenticated()"><a ui-sref="game1">Play Game</a></li>
-              <li ng-show="isAuthenticated()"><a ng-click="logout()">Log out</a></li>
-            </ul>
-          </lateral-slide-menu>
+      <lateral-slide-menu ng-cloak>
+        <ul>
+          <li ng-repeat="tab in tabs"
+              ng-show="showTab(tab)"
+              ng-class="getTabClass(tab)">
+            <a ui-sref="{{ tab.state }}">{{ tab.label }}</a>
+          </li>
+          <li ng-hide="isAuthenticated()"><a ui-sref="login">Login</a></li>
+          <li ng-hide="isAuthenticated()"><a ui-sref="register">Sign up</a></li>
+          <li ng-show="isAuthenticated()"><a>{{ user ? "Welcome, " + user.username : '' }}</a></li>
+          <li ng-show="isAuthenticated()"><a ui-sref="game1">Play Game</a></li>
+          <li ng-show="isAuthenticated()"><a ng-click="logout()">Log out</a></li>
+        </ul>
+      </lateral-slide-menu>
 
-    <div class="main-page lateral-slide-menu-main-page">
-      <a href=""class="toggle-menu" lateral-slide-menu-toggle></a>
-      <div class="view-container">
-        <div ui-view></div>
+      <div class="main-page lateral-slide-menu-main-page">
+        <a href=""class="toggle-menu" lateral-slide-menu-toggle></a>
+        <div class="view-container">
+          <h1 class="logo">Krescendo</h1>
+          <div ui-view></div>
+        </div>
       </div>
-    </div>
-
-    
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
