@@ -5,8 +5,8 @@ angular.module('crescendoApp')
   function ($scope, $rootScope, $state, $browser, AuthService) {
 
     $scope.tabs = [
-      { state: 'home',  label: 'home', active: true, isPublic: true },
-      { state: 'about', label: 'about', active: true, isPublic: true }
+      { state: 'home',  label: 'Home', active: true, isPublic: true },
+      { state: 'about', label: 'About', active: true, isPublic: true }
     ];
 
     $scope.getTabClass = function(tab) {
