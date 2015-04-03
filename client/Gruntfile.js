@@ -376,7 +376,7 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'audio/{,*/}*.mp3',
+            'audio/{,*/}*.{mp3}',
             'styles/fonts/{,*/}*.*'
           ]
         }, {
@@ -385,6 +385,12 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>/images',
           src: ['generated/*']
         }]
+      },
+      audio: {
+        expand: true,
+        cwd: '<%= yeoman.app %>',
+        dest: '<%= yeoman.dist %>',
+        src: '{,*/}*.mp3'
       },
       styles: {
         expand: true,
