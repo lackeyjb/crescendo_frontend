@@ -64,7 +64,7 @@ angular.module('crescendoApp')
       this.load.image('bubbleGsh', 'images/g-sh-bubble.png');
       this.load.image('platform', 'images/moving_platform.png');
       this.load.image('ice-platform', 'images/ice-platform.png');
-      this.load.audio('bubbleburst', 'audio/woodblock.mp3')
+      this.load.audio('bubbleburst', 'images/woodblock.mp3')
       this.load.spritesheet('dude', 'images/crescendodude.png', 49.6, 68);
     },
 
