@@ -5,12 +5,16 @@
 @import "2-modules/modules";
 @import "3-layouts/layouts";
 
-/* 
 body {
   overflow: auto;
   height: auto;
+  margin: 0;
 }
-*/
+
+.logo {
+  text-align: center;
+}
+
 .lateral-slide-menu-scrollable-container {
   display: none;
   overflow: auto;
@@ -91,11 +95,6 @@ body {
   transform: none;
   opacity: 1;
   filter: alpha(opacity=100);
-}
-body {
-  overflow: auto;
-  height: auto;
-  margin: 0;
 }
 .lateral-slide-menu {
   background-color: #191918;
