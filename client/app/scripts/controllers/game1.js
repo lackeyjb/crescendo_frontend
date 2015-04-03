@@ -168,7 +168,9 @@ angular.module('crescendoApp')
       if ((this.lives > 0) && (this.score < goodNote)) {
         this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
       } else {
-        $state.go('home');
+        this.score = 0;
+        this.lives = 3;
+        $state.go('menu');
       }
 
       var standing = this.player.body.blocked.down ||
