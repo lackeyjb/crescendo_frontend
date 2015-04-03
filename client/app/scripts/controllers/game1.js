@@ -174,6 +174,8 @@ angular.module('crescendoApp')
         this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
       } else {
         $state.go('home');
+        this.score = 0;
+        this.lives = 3;
       }
 
       var standing = this.player.body.blocked.down ||
