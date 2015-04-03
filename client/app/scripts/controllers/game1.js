@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('crescendoApp')
-.controller('Game1Ctrl', [ function () {
+.controller('Game1Ctrl', [ '$state', function ($state) {
 
   var game = new Phaser.Game(640, 480, Phaser.AUTO, 'gameview');
 
@@ -12,7 +12,10 @@ angular.module('crescendoApp')
     this.sky = null;
     this.bubbles = null;
     this.score = 0;
+    this.increaseScoreBy = 10;
     this.scoreText = 0;
+    this.lives = 3;
+    this.livesText = 3;
 
     this.facing = 'left';
     this.edgeTimer = 0;
@@ -122,6 +125,9 @@ angular.module('crescendoApp')
       this.scoreText = game.add.text(16, 16, 'score: 0', 
         { fontSize: '32px', fill: '#000' });
 
+      this.livesText = game.add.text(100, 40, 'lives: 3',
+        { fontSize: '32px', fill: '#000' });
+
       this.cursors = this.input.keyboard.createCursorKeys();
       this.jump = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
@@ -157,13 +163,22 @@ angular.module('crescendoApp')
 
       this.physics.arcade.collide(this.bubbles);
 
-      this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
+      var goodNote = 120 - (this.badNotesArray().length * this.increaseScoreBy);
+
+      if ((this.lives > 0) && (this.score < goodNote)) {
+        this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
+      } else {
+        $state.go('home');
+      }
 
       var standing = this.player.body.blocked.down ||
       this.player.body.touching.down;
 
       this.scoreText.x = this.camera.x;
       this.scoreText.y = this.camera.y;
+
+      this.livesText.x = this.camera.x;
+      this.livesText.y = this.camera.y + 30;
 
 
       this.player.body.velocity.x = 0;
@@ -238,8 +253,6 @@ angular.module('crescendoApp')
       for (var i = 0; i < 12; i++) {
         
         var bubble = self.bubbles.create(i * 70, (self.camera.screenView.height + 1000), self.bubbleRandomizer());
-        // console.log(this.camera.height);
-        // console.log(this.camera);
 
         this.gameBubbleCollection.push(bubble);
       
@@ -254,16 +267,22 @@ angular.module('crescendoApp')
 
       bubble.kill();
      
-      // console.log( _.contains(this.cMajorScale, bubble.key.toString()) );
       if (_.contains(this.cMajorScale, bubble.key.toString())) {
-        this.score += 10;
+        this.score += this.increaseScoreBy;
         this.scoreText.text = 'Score: ' + this.score;
       }
       else {
-        this.score -= 10;
-        this.scoreText.text = 'Score: ' + this.score;
+        this.lives -= 1;
+        this.livesText.text = 'Lives: ' + this.lives;
       }
 
+    },
+
+    badNotesArray: function() {
+      var allBubbles = _.map(this.gameBubbleCollection, function (bubble) {
+        return bubble.key.toString();
+      });
+      return _.difference(allBubbles, this.cMajorScale);
     }  
 
     // render: function () {
