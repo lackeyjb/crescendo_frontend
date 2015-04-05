@@ -26,7 +26,7 @@ angular.module('crescendoApp')
 
     this.gameBubbleCollection = [];
     this.cMajorScale = ['bubbleC', 'bubbleD', 'bubbleE', 'bubbleF', 'bubbleG',
-                      'bubbleF', 'bubbleA', 'bubbleB'];
+                      'bubbleA', 'bubbleB'];
 
     this.bubbleBurst = null;
   };
