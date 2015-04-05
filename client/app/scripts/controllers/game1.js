@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('crescendoApp')
-.controller('Game1Ctrl', [ '$state', function ($state) {
+.controller('Game1Ctrl', [ '$state', '$scope', 'AuthService', 'ScoreService', 
+function ($state, $scope, AuthService, ScoreService) {
+
+  AuthService.getSession().success(function(user) {
+    $scope.userId = user.id;
+  });
 
   var game = new Phaser.Game(640, 480, Phaser.AUTO, 'gameview');
 
@@ -11,7 +16,7 @@ angular.module('crescendoApp')
     this.platforms = null;
     this.sky = null;
     this.bubbles = null;
-    this.score = 0;
+    $scope.score = 0;
     this.increaseScoreBy = 10;
     this.scoreText = 0;
     this.lives = 3;
@@ -170,15 +175,22 @@ angular.module('crescendoApp')
 
       var goodNote = 120 - (this.badNotesArray().length * this.increaseScoreBy);
 
-      if ((this.lives > 0) && (this.score < goodNote)) {
+      if ((this.lives > 0) && ($scope.score < goodNote)) {
+
         this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
+
       } else {
 
+        ScoreService.postScore($scope.userId, $scope.score).success(function () {
+          console.log('Score posted');
+        })
+        .error(function () {
+          console.log('Error, score did not post');
+        });
+        
+        this.lives   = 3;
+        $scope.score = 0;
         $state.go('menu');
-        this.bubbleBurst.stopAll();
-        this.score = 0;
-        this.lives = 3;
-
       }
 
       var standing = this.player.body.blocked.down ||
@@ -270,7 +282,7 @@ angular.module('crescendoApp')
 
         bubble.body.collideWorldBounds = true;
 
-        bubble.body.gravity.y = Math.floor((Math.random() * -400) + (-600));
+        bubble.body.gravity.y = 0;
       }
     },
 
@@ -280,8 +292,8 @@ angular.module('crescendoApp')
       this.bubbleBurst.play();
 
       if (_.contains(this.cMajorScale, bubble.key.toString())) {
-        this.score += this.increaseScoreBy;
-        this.scoreText.text = 'Score: ' + this.score;
+        $scope.score += this.increaseScoreBy;
+        this.scoreText.text = 'Score: ' + $scope.score;
       }
       else {
         this.lives -= 1;
