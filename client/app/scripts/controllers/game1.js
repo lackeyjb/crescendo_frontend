@@ -189,9 +189,6 @@ function ($state, $scope, AuthService, ScoreService) {
         });
         
         game.destroy();
-
-        // this.lives   = 3;
-        // $scope.score = 0;
         $state.go('menu');
       }
 

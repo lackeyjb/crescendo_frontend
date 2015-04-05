@@ -18,7 +18,8 @@ angular
     'ui.router',
     'ngSanitize',
     'ngTouch',
-    'ap.lateralSlideMenu'
+    'ap.lateralSlideMenu',
+    'angular-chartist'
   ])
   .config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
 

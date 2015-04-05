@@ -31,6 +31,8 @@ module.exports = function(config) {
       'bower_components/ui-router/release/angular-ui-router.js',
       'bower_components/phaser/build/phaser.js',
       'bower_components/underscore/underscore.js',
+      'bower_components/chartist/dist/chartist.min.js',
+      'bower_components/angular-chartist.js/dist/angular-chartist.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
