@@ -26,7 +26,7 @@ angular.module('crescendoApp')
 
     this.gameBubbleCollection = [];
     this.cMajorScale = ['bubbleC', 'bubbleD', 'bubbleE', 'bubbleF', 'bubbleG',
-                      'bubbleF', 'bubbleA', 'bubbleB'];
+                      'bubbleA', 'bubbleB'];
 
     this.bubbleBurst = null;
   };
@@ -264,10 +264,11 @@ angular.module('crescendoApp')
 
         this.gameBubbleCollection.push(bubble);
       
-        bubble.body.bounce.y = 0.9 + Math.random() * 0.2;
+        bubble.body.bounce.y = 0.75 + Math.random() * 0.2;
+
         bubble.body.collideWorldBounds = true;
 
-        bubble.body.gravity.y = Math.floor((Math.random() * -200) + (-600));
+        bubble.body.gravity.y = Math.floor((Math.random() * -400) + (-600));
       }
     },
 
