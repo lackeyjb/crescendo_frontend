@@ -188,8 +188,10 @@ function ($state, $scope, AuthService, ScoreService) {
           console.log('Error, score did not post');
         });
         
-        this.lives   = 3;
-        $scope.score = 0;
+        game.destroy();
+
+        // this.lives   = 3;
+        // $scope.score = 0;
         $state.go('menu');
       }
 
