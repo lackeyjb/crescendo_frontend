@@ -35,6 +35,11 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .state('menu', {
+        url: '/menu',
+        templateUrl: 'views/menu.html',
+        controller: 'MenuCtrl'
+      })
       .state('game1', {
         url: '/game1',
         templateUrl: 'views/game1.html',
