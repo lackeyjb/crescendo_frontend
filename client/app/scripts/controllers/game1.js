@@ -26,7 +26,9 @@ angular.module('crescendoApp')
 
     this.gameBubbleCollection = [];
     this.cMajorScale = ['bubbleC', 'bubbleD', 'bubbleE', 'bubbleF', 'bubbleG',
-                      'bubbleF', 'bubbleA', 'bubbleB'];
+                      'bubbleA', 'bubbleB'];
+
+    this.bubbleBurst = null;
   };
 
   PhaserGame.prototype = {
@@ -62,6 +64,7 @@ angular.module('crescendoApp')
       this.load.image('bubbleGsh', 'images/g-sh-bubble.png');
       this.load.image('platform', 'images/moving_platform.png');
       this.load.image('ice-platform', 'images/ice-platform.png');
+      this.load.audio('bubbleburst', 'audio/woodblock.mp3');
       this.load.spritesheet('dude', 'images/crescendodude.png', 49.6, 68);
     },
 
@@ -122,6 +125,8 @@ angular.module('crescendoApp')
 
       this.bubbleSpawn();
 
+      this.bubbleBurst = game.add.audio('bubbleburst');
+
       this.scoreText = game.add.text(16, 16, 'score: 0', 
         { fontSize: '32px', fill: '#000' });
 
@@ -168,9 +173,12 @@ angular.module('crescendoApp')
       if ((this.lives > 0) && (this.score < goodNote)) {
         this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
       } else {
+
+        $state.go('menu');
+        this.bubbleBurst.stopAll();
         this.score = 0;
         this.lives = 3;
-        $state.go('menu');
+
       }
 
       var standing = this.player.body.blocked.down ||
@@ -258,17 +266,19 @@ angular.module('crescendoApp')
 
         this.gameBubbleCollection.push(bubble);
       
-        bubble.body.bounce.y = 0.9 + Math.random() * 0.2;
+        bubble.body.bounce.y = 0.75 + Math.random() * 0.2;
+
         bubble.body.collideWorldBounds = true;
 
-        bubble.body.gravity.y = Math.floor((Math.random() * -200) + (-600));
+        bubble.body.gravity.y = Math.floor((Math.random() * -400) + (-600));
       }
     },
 
     collectBubble: function(player, bubble) {
 
       bubble.kill();
-     
+      this.bubbleBurst.play();
+
       if (_.contains(this.cMajorScale, bubble.key.toString())) {
         this.score += this.increaseScoreBy;
         this.scoreText.text = 'Score: ' + this.score;

@@ -17,7 +17,8 @@ angular
     'ngResource',
     'ui.router',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ap.lateralSlideMenu'
   ])
   .config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
 
@@ -61,4 +62,11 @@ angular
       });
       
       $urlRouterProvider.otherwise('/');
-  });
+  })
+  .service('number',  function() {
+      return {
+        isPositive: function(operationPrice) {
+          return String(operationPrice).indexOf('-') === -1;
+        }
+      };
+    });
