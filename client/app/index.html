@@ -30,7 +30,7 @@
           <li ng-hide="isAuthenticated()"><a ui-sref="login">Login</a></li>
           <li ng-hide="isAuthenticated()"><a ui-sref="register">Sign up</a></li>
           <li ng-show="isAuthenticated()"><a>{{ user ? "Welcome, " + user.username : '' }}</a></li>
-          <li ng-show="isAuthenticated()"><a ui-sref="game1">Play Game</a></li>
+          <li ng-show="isAuthenticated()"><a ui-sref="menu">Menu</a></li>
           <li ng-show="isAuthenticated()"><a ng-click="logout()">Log out</a></li>
         </ul>
       </lateral-slide-menu>
