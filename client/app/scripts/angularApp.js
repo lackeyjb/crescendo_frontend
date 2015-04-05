@@ -40,6 +40,16 @@ angular
         templateUrl: 'views/menu.html',
         controller: 'MenuCtrl'
       })
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl',
+        onEnter: ['$state', 'AuthService', function ($state, AuthService) {
+          if (!AuthService.isAuthenticated()) {
+            $state.go('dashboard');
+          }
+        }]
+      })
       .state('game1', {
         url: '/game1',
         templateUrl: 'views/game1.html',
