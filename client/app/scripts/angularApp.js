@@ -46,7 +46,7 @@ angular
         controller: 'DashboardCtrl',
         onEnter: ['$state', 'AuthService', function ($state, AuthService) {
           if (!AuthService.isAuthenticated()) {
-            $state.go('dashboard');
+            $state.go('home');
           }
         }]
       })
