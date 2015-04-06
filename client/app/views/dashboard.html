@@ -8,8 +8,30 @@
 </div>
 
 <div class="dashboard-top-container">
-  <div ng-controller="DashboardCtrl as chartist">
-    <chartist class="ct-chart" 
+  <div class="tutorial">
+    <ul class="accordion-tabs">
+      <li class="tab-header-and-content">
+        <a href="javascript:void(0)" class="is-active tab-link">Tab Item</a>
+        <div class="tab-content">
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tincidunt pellentesque lorem, id suscipit dolor rutrum id. Morbi facilisis porta volutpat. Fusce adipiscing, mauris quis congue tincidunt, sapien purus suscipit odio, quis dictum odio tortor in sem. Ut sit amet libero nec orci mattis fringilla. Praesent eu ipsum in sapien tincidunt molestie sed ut magna. Nam accumsan dui at orci rhoncus pharetra tincidunt elit ullamcorper. Sed ac mauris ipsum. Nullam imperdiet sapien id purus pretium id aliquam mi ullamcorper.</p>
+        </div>
+      </li>
+      <li class="tab-header-and-content">
+        <a href="javascript:void(0)" class="tab-link">Third</a>
+        <div class="tab-content">
+          <p>Donec mattis mauris gravida metus laoreet non rutrum sem viverra. Aenean nibh libero, viverra vel vestibulum in, porttitor ut sapien. Phasellus tempor lorem id justo ornare tincidunt. Nulla faucibus, purus eu placerat fermentum, velit mi iaculis nunc, bibendum tincidunt ipsum justo eu mauris. Nulla facilisi. Vestibulum vel lectus ac purus tempus suscipit nec sit amet eros. Nullam fringilla, enim eu lobortis dapibus, quam magna tincidunt nibh, sit amet imperdiet dolor justo congue turpis.</p>    
+        </div>
+      </li>
+    </ul>
+
+    <button ng-click="goToGame()" class="menu-button">Play game</button>
+  </div>
+</div>
+
+
+<div class="dashboard-bottom-container">
+ <div ng-controller="DashboardCtrl as chartist">
+    <chartist class="ct-chart dashboard-chart" 
               chartist-data="chartist.lineData" 
               chartist-chart-type="Line"
               chartist-chart-options="chartist.options">
@@ -17,18 +39,3 @@
   </div>
 </div>
 
-<div class="dashboard-bottom-container">
-  <div class="tutorial">
-    <h1>Tutorial</h1>
-    <p>The tutorial will be here.</p>
-    <button ng-click="goToGame()" class="menu-button">Play game</button>
-  </div>
-  <div class="video">
-    <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/hs6086iRlnQ?showinfo=0&iv_load_policy=3&controls=0"
-              frameborder="0"
-              allowfullscreen>
-      </iframe>
-    </div>
-  </div>
-</div>
