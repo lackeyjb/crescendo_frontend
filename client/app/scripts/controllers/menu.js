@@ -6,4 +6,8 @@ angular.module('crescendoApp')
   $scope.goToGame = function() {
     $state.go('game1');
   };
+
+  $scope.goToDashboard = function() {
+    $state.go('dashboard');
+  };
 }]);

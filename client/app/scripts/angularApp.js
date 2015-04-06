@@ -18,7 +18,8 @@ angular
     'ui.router',
     'ngSanitize',
     'ngTouch',
-    'ap.lateralSlideMenu'
+    'ap.lateralSlideMenu',
+    'angular-chartist'
   ])
   .config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
 
@@ -39,6 +40,16 @@ angular
         url: '/menu',
         templateUrl: 'views/menu.html',
         controller: 'MenuCtrl'
+      })
+      .state('dashboard', {
+        url: '/dashboard',
+        templateUrl: 'views/dashboard.html',
+        controller: 'DashboardCtrl',
+        onEnter: ['$state', 'AuthService', function ($state, AuthService) {
+          if (!AuthService.isAuthenticated()) {
+            $state.go('home');
+          }
+        }]
       })
       .state('game1', {
         url: '/game1',
