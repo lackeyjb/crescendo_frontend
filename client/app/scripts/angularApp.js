@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'ap.lateralSlideMenu',
-    'angular-chartist'
+    'angular-chartist',
+    'ui.gravatar'
   ])
   .config(function ($httpProvider, $stateProvider, $urlRouterProvider) {
 
@@ -80,4 +81,9 @@ angular
           return String(operationPrice).indexOf('-') === -1;
         }
       };
-    });
+    })
+  .config( ['gravatarServiceProvider', function (gravatarServiceProvider) {
+    gravatarServiceProvider.defaults = { "default": 'mm' };
+    gravatarServiceProvider.secure   = true;
+    gravatarServiceProvider.protocol = 'my-protocol';
+  }]);
