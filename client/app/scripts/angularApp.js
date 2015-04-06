@@ -83,7 +83,7 @@ angular
       };
     })
   .config( ['gravatarServiceProvider', function (gravatarServiceProvider) {
-    gravatarServiceProvider.defaults = { "default": 'mm' };
+    gravatarServiceProvider.defaults = { 'default': 'mm' };
     gravatarServiceProvider.secure   = true;
     gravatarServiceProvider.protocol = 'my-protocol';
   }]);

@@ -1,18 +1,34 @@
-<h1>Dashboard</h1>
+<div class="dashboard-side-container">
+  <img gravatar-src="user.email" gravatar-size="130">
+  <br>
+  <a href="https://en.gravatar.com/site/login">Upload image with Gravatar</a>
 
-<p>{{ scores }}</p>
-<img gravatar-src="user.email" gravatar-size="250">
-<a href="https://en.gravatar.com/site/login">Upload image with Gravatar</a>
+  <h2>Hello, {{ user.username }}!</h2>
+  <h2>Average Score: {{ avgScore }}</h2>
+</div>
 
-<h2>Hello, {{ user.username }}!</h2>
+<div class="dashboard-top-container">
+  <div ng-controller="DashboardCtrl as chartist">
+    <chartist class="ct-chart" 
+              chartist-data="chartist.lineData" 
+              chartist-chart-type="Line"
+              chartist-chart-options="chartist.options">
+    </chartist>
+  </div>
+</div>
 
-<h2>Average Score: {{ avgScore }}</h2>
-
-<button ng-click="goToGame()" class="menu-button">Play game</button>
-
-<div ng-controller="DashboardCtrl as chartist">
-  <chartist class="ct-chart ct-golden-section" 
-            chartist-data="chartist.lineData" 
-            chartist-chart-type="Line">
-  </chartist>
+<div class="dashboard-bottom-container">
+  <div class="tutorial">
+    <h1>Tutorial</h1>
+    <p>The tutorial will be here.</p>
+    <button ng-click="goToGame()" class="menu-button">Play game</button>
+  </div>
+  <div class="video">
+    <div class="video-wrapper">
+      <iframe src="https://www.youtube.com/embed/hs6086iRlnQ?showinfo=0&iv_load_policy=3&controls=0"
+              frameborder="0"
+              allowfullscreen>
+      </iframe>
+    </div>
+  </div>
 </div>

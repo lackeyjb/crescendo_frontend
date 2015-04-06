@@ -11,6 +11,10 @@ body {
   margin: 0;
 }
 
+.view-container {
+  @include outer-container;
+}
+
 .logo {
   text-align: center;
 }
