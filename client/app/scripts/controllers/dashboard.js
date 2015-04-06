@@ -16,8 +16,14 @@ function ($scope, $state, AuthService, ScoreService) {
     _.each(data, function (score) {
       $scope.scores.push(score.points);
       $scope.labels.push(score.label);
-      console.log($scope.scores);
     });
+    avgData($scope.scores);
+  }
+
+  function avgData(data) {
+    var sum = data.reduce(function(a, b) { return a + b; });
+    var avg = sum / data.length;
+    $scope.avgScore = Math.floor(avg);
   }
   
   $scope.scores = [];
