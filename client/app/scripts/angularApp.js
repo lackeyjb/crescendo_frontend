@@ -18,7 +18,6 @@ angular
     'ui.router',
     'ngSanitize',
     'ngTouch',
-    'ap.lateralSlideMenu',
     'angular-chartist',
     'ui.gravatar'
   ])
