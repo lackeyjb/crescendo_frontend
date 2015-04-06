@@ -277,11 +277,11 @@ function ($state, $scope, AuthService, ScoreService) {
 
         this.gameBubbleCollection.push(bubble);
       
-        bubble.body.bounce.y = 0.75 + Math.random() * 0.2;
+        bubble.body.bounce.y = 0.85 + Math.random() * 0.2;
 
         bubble.body.collideWorldBounds = true;
 
-        bubble.body.gravity.y = 0;
+        bubble.body.gravity.y = Math.floor(Math.random() * (1 - 700 + 740)) - 740;
       }
     },
 
