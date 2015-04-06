@@ -12,17 +12,29 @@ function ($scope, $state, AuthService, ScoreService) {
     $state.go('game1');
   };
 
-  ScoreService.getScores().success(function (data) {
-    $scope.scores = [];
-
-    _.map(data, function (score) {
+  function pushData(data) {
+    _.each(data, function (score) {
       $scope.scores.push(score.points);
+      $scope.labels.push(score.label);
+      console.log($scope.scores);
     });
-  })
-  .error(function () {
-    console.log('Error');
-  });
+  }
+  
+  $scope.scores = [];
+  $scope.labels = [];
+
+  ScoreService.getScores()
+    .success(pushData)
+    .error(function () {
+      console.log('Error');
+    });
 
 
+  this.lineData = {
+    labels: $scope.labels,
+    series: [
+      $scope.scores
+    ]
+  };
 
 }]);
