@@ -8,39 +8,58 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel='stylesheet' href='bower_components/chartist/dist/chartist.min.css' />
+    <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="/styles/bootstrap.css">
+    <link rel="stylesheet" href="/styles/main.css">
     <!-- endbuild -->
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
   </head>
-  <body ng-app="crescendoApp" ng-cloak lateral-slide-menu-controller ng-controller="NavCtrl">
+  <body ng-app="crescendoApp" ng-cloak ng-controller="NavCtrl">
     <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a ui-sref="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-      <lateral-slide-menu ng-cloak>
-        <ul>
-          <li ng-repeat="tab in tabs"
-              ng-show="showTab(tab)"
-              ng-class="getTabClass(tab)">
-            <a ui-sref="{{ tab.state }}">{{ tab.label }}</a>
-          </li>
-          <li ng-hide="isAuthenticated()"><a ui-sref="login">Login</a></li>
-          <li ng-hide="isAuthenticated()"><a ui-sref="register">Sign up</a></li>
-          <li ng-show="isAuthenticated()"><a ui-sref="dashboard">Dashboard</a></li>
-          <li ng-show="isAuthenticated()"><a ng-click="logout()">Log out</a></li>
-        </ul>
-      </lateral-slide-menu>
+    <!-- Add your site or application content here -->
+    <div class="navbar navbar-inverse" role="navigation" ng-controller="NavCtrl">
+      <div class="container">
+        <div class="navbar-header">
 
-      <div class="main-page lateral-slide-menu-main-page">
-        <a href=""class="toggle-menu" lateral-slide-menu-toggle></a>
-        <div class="container">
-          <div ui-view></div>
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" ui-sref="home">Crescendo</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+          <ul class="nav navbar-nav">
+            <li ng-repeat="tab in tabs"
+                ng-show="showTab(tab)"
+                ng-class="getTabClass(tab)">
+              <a ui-sref="{{ tab.state }}">{{ tab.label }}</a>
+            </li>
+            <li ng-hide="isAuthenticated()"><a ui-sref="login">Login</a></li>
+            <li ng-hide="isAuthenticated()"><a ui-sref="register">Sign Up</a></li>
+            <li ng-show="isAuthenticated()"><a ui-sref="dashboard">Dashboard</a></li>
+            <li ng-show="isAuthenticated()"><a ng-click="logout()">Log Out</a></li>
+          </ul>
+
         </div>
       </div>
+    </div>
+     
+
+      
+    <div class="container clearfix">
+      <div ui-view></div>
+    </div>
+    
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -84,7 +103,6 @@
     <script src="scripts/controllers/menu.js"></script>
     <script src="scripts/controllers/dashboard.js"></script>
     <script src="scripts/services/auth.js"></script>
-    <script src="scripts/services/angular-ap-lateral-slide-menu.js"></script>
     <script src="scripts/services/score.js"></script>
     <!-- endbuild -->
 </body>
