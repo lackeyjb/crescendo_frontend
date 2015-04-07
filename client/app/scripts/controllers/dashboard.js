@@ -43,4 +43,9 @@ function ($scope, $state, AuthService, ScoreService) {
     ]
   };
 
+  // this.options = {
+  //   width: '500px',
+  //   height: '250px'
+  // };
+  
 }]);

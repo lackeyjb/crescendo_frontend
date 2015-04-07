@@ -1,18 +1,45 @@
-<h1>Dashboard</h1>
+<div class="row dashboard-first-row">
+  <div class="col-md-3">
+    <img gravatar-src="user.email" gravatar-size="150">
+    <br>
+    <a href="https://en.gravatar.com/site/login">Upload image with Gravatar</a>
 
-<p>{{ scores }}</p>
-<img gravatar-src="user.email" gravatar-size="250">
-<a href="https://en.gravatar.com/site/login">Upload image with Gravatar</a>
+    <h4>Hello, {{ user.username }}!</h4>
 
-<h2>Hello, {{ user.username }}!</h2>
-
-<h2>Average Score: {{ avgScore }}</h2>
-
-<button ng-click="goToGame()" class="menu-button">Play game</button>
-
-<div ng-controller="DashboardCtrl as chartist">
-  <chartist class="ct-chart ct-golden-section" 
-            chartist-data="chartist.lineData" 
-            chartist-chart-type="Line">
-  </chartist>
+  </div>
+  <div class="col-md-5 col-md-offset-4">
+    <div class="panel panel-default">
+      <div class="panel-body dashboard-chart">
+        <div ng-controller="DashboardCtrl as chartist">
+          <chartist class="ct-chart" 
+                    chartist-data="chartist.lineData" 
+                    chartist-chart-type="Line"
+                    chartist-chart-options="chartist.options">
+          </chartist>
+        </div>
+        <h5 style="color: black;">Average Score: {{ avgScore }}</h5>
+      </div>
+    </div>
+  </div>
 </div>
+
+<div class="row dashboard-second-row">
+  <div class="panel panel-default">
+    <div class="panel-body dashboard-game1">
+      <div class="col-md-4">
+        <img src="/images/game-thumbnail.jpeg" 
+             width="300px" 
+             class="image-responsive"
+             alt="Game thumbnail">
+      </div>
+      <div class="col-md-5 col-md-offset-3 game1-text">
+        <h2>Tutorial</h2>
+        <p>Collect all the bubbles that contain the correct scale notes
+          and avoid the bad notes</p>
+        <p>Try to reach the top<p>
+        <button ng-click="goToGame()" class="btn-danger play-button-1">Play game</button>
+      </div>
+    </div>
+  </div>
+</div>
+
