@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:700);
+
 .dashboard-first-row {
   margin-top: 30px;
 }
@@ -21,3 +23,12 @@
   border-color: #D70206;
 }
 
+#remove-border {
+  border-radius: 0px;
+}
+
+#logo {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2em;
+}
+>>>>>>> master
