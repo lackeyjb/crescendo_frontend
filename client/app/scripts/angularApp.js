@@ -31,11 +31,6 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .state('menu', {
-        url: '/menu',
-        templateUrl: 'views/menu.html',
-        controller: 'MenuCtrl'
-      })
       .state('dashboard', {
         url: '/dashboard',
         templateUrl: 'views/dashboard.html',
