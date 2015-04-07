@@ -42,8 +42,8 @@ function ($scope, $state, AuthService, ScoreService) {
     ]
   };
 
-  $("#myModal").on('hidden.bs.modal', function (e) {
-  $("#myModal iframe").attr("src", $("#myModal iframe").attr("src"));
+  $('#myModal').on('hidden.bs.modal', function (e) {
+  $('#myModal iframe').attr('src', $('#myModal iframe').attr('src'));
   });
 
   

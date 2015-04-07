@@ -18,9 +18,25 @@
   margin-top: 25px;
 }
 
+button.btn.btn-primary.btn-lg.learn-more-btn {
+  margin-bottom: 10px;
+}
+
+.gravatar-info {
+  font-size: 12px;
+}
+
 .play-button-1 {
   background-color: #D70206;
   border-color: #D70206;
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 1.2em;
+  width: 40%;
+}
+
+.game1-panel {
+  width: 98.7%;
 }
 
 #remove-border {
@@ -30,6 +46,11 @@
 #logo {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 2em;
+}
+
+#gameview {
+  margin-left: 47px;
+  margin-top: 40px;
 }
 
 img {
