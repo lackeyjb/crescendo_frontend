@@ -35,7 +35,6 @@ function ($scope, $state, AuthService, ScoreService) {
       console.log('Error');
     });
 
-
   this.lineData = {
     labels: $scope.labels,
     series: [
@@ -43,9 +42,5 @@ function ($scope, $state, AuthService, ScoreService) {
     ]
   };
 
-  // this.options = {
-  //   width: '500px',
-  //   height: '250px'
-  // };
   
 }]);
