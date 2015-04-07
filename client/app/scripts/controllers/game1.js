@@ -189,7 +189,7 @@ function ($state, $scope, AuthService, ScoreService) {
         });
         
         game.destroy();
-        $state.go('menu');
+        $state.go('dashboard');
       }
 
       var standing = this.player.body.blocked.down ||

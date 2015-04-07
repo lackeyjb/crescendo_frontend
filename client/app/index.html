@@ -12,6 +12,7 @@
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link href="styles/main.css" rel="stylesheet">
     <!-- endbuild -->
     <link rel="stylesheet" type="text/css" href="styles/main.css">
     <link href="//maxcdn.bootstrapcdn.com/bootswatch/3.3.4/darkly/bootstrap.min.css" rel="stylesheet">
@@ -46,7 +47,6 @@
             </li>
             <li ng-hide="isAuthenticated()"><a ui-sref="login">Login</a></li>
             <li ng-hide="isAuthenticated()"><a ui-sref="register">Sign Up</a></li>
-            <li ng-show="isAuthenticated()"><a ui-sref="dashboard">Dashboard</a></li>
             <li ng-show="isAuthenticated()"><a ng-click="logout()">Log Out</a></li>
           </ul>
 
@@ -75,6 +75,7 @@
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -90,10 +91,12 @@
     <script src="bower_components/chartist/dist/chartist.min.js"></script>
     <script src="bower_components/angular-chartist.js/dist/angular-chartist.js"></script>
     <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
+    <script src="bower_components/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="scripts/angularApp.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>

@@ -35,7 +35,6 @@ function ($scope, $state, AuthService, ScoreService) {
       console.log('Error');
     });
 
-
   this.lineData = {
     labels: $scope.labels,
     series: [
@@ -43,4 +42,9 @@ function ($scope, $state, AuthService, ScoreService) {
     ]
   };
 
+  $('#myModal').on('hidden.bs.modal', function (e) {
+  $('#myModal iframe').attr('src', $('#myModal iframe').attr('src'));
+  });
+
+  
 }]);
