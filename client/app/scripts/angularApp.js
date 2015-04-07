@@ -74,13 +74,6 @@ angular
       
       $urlRouterProvider.otherwise('/');
   })
-  .service('number',  function() {
-      return {
-        isPositive: function(operationPrice) {
-          return String(operationPrice).indexOf('-') === -1;
-        }
-      };
-    })
   .config( ['gravatarServiceProvider', function (gravatarServiceProvider) {
     gravatarServiceProvider.defaults = { 'default': 'mm' };
     gravatarServiceProvider.secure   = true;
