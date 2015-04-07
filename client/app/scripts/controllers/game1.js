@@ -34,6 +34,9 @@ function ($state, $scope, AuthService, ScoreService) {
                       'bubbleA', 'bubbleB'];
 
     this.bubbleBurst = null;
+
+    this.s = null;
+    this.music = null;
   };
 
   PhaserGame.prototype = {
@@ -53,24 +56,25 @@ function ($state, $scope, AuthService, ScoreService) {
 
     preload: function () {
 
-      this.load.image('trees', 'images/trees.png');
-      this.load.image('clouds', 'images/clouds.png');
-      this.load.image('bubbleA', 'images/a-bubble.png');
-      this.load.image('bubbleAsh', 'images/a-sh-bubble.png');
-      this.load.image('bubbleB', 'images/b-bubble.png');
-      this.load.image('bubbleC', 'images/c-bubble.png');
-      this.load.image('bubbleCsh', 'images/c-sh-bubble.png');
-      this.load.image('bubbleD', 'images/d-bubble.png');
-      this.load.image('bubbleDsh', 'images/d-sh-bubble.png');
-      this.load.image('bubbleE', 'images/e-bubble.png');
-      this.load.image('bubbleF', 'images/f-bubble.png');
-      this.load.image('bubbleFsh', 'images/f-sh-bubble.png');
-      this.load.image('bubbleG', 'images/g-bubble.png');
-      this.load.image('bubbleGsh', 'images/g-sh-bubble.png');
-      this.load.image('platform', 'images/moving_platform.png');
+      this.load.image('trees',        'images/trees.png');
+      this.load.image('clouds',       'images/clouds.png');
+      this.load.image('bubbleA',      'images/a-bubble.png');
+      this.load.image('bubbleAsh',    'images/a-sh-bubble.png');
+      this.load.image('bubbleB',      'images/b-bubble.png');
+      this.load.image('bubbleC',      'images/c-bubble.png');
+      this.load.image('bubbleCsh',    'images/c-sh-bubble.png');
+      this.load.image('bubbleD',      'images/d-bubble.png');
+      this.load.image('bubbleDsh',    'images/d-sh-bubble.png');
+      this.load.image('bubbleE',      'images/e-bubble.png');
+      this.load.image('bubbleF',      'images/f-bubble.png');
+      this.load.image('bubbleFsh',    'images/f-sh-bubble.png');
+      this.load.image('bubbleG',      'images/g-bubble.png');
+      this.load.image('bubbleGsh',    'images/g-sh-bubble.png');
+      this.load.image('platform',     'images/moving_platform.png');
       this.load.image('ice-platform', 'images/ice-platform.png');
-      this.load.audio('bubbleburst', 'audio/woodblock.mp3');
-      this.load.spritesheet('dude', 'images/crescendodude.png', 49.6, 68);
+      this.load.audio('bubbleburst',  'audio/woodblock.mp3');
+      this.load.audio('ragtime',      'audio/sunflowerslowdrag.mp3');
+      this.load.spritesheet('dude',   'images/crescendodude.png', 49.6, 68);
     },
 
     create: function () {
@@ -131,6 +135,9 @@ function ($state, $scope, AuthService, ScoreService) {
       this.bubbleSpawn();
 
       this.bubbleBurst = game.add.audio('bubbleburst');
+
+      this.music = game.add.audio('ragtime');
+      this.music.play();
 
       this.scoreText = game.add.text(16, 16, 'score: 0', 
         { fontSize: '32px', fill: '#000' });
