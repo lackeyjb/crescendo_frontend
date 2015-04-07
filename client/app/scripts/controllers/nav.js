@@ -39,12 +39,12 @@ angular.module('crescendoApp')
 
     $rootScope.$on('auth:new-registration', function(event, user) {
       $scope.user = user;
-      $state.go('home');
+      $state.go('dashboard');
     });
 
     $rootScope.$on('auth:login', function(event, user) {    
       $scope.user = user;
-      $state.go('home');
+      $state.go('dashboard');
     });
 
     $rootScope.$on('auth:logout', function(/* event, user */) {
