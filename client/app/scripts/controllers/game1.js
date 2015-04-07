@@ -35,7 +35,6 @@ function ($state, $scope, AuthService, ScoreService) {
 
     this.bubbleBurst = null;
 
-    this.s = null;
     this.music = null;
   };
 
