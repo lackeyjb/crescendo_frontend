@@ -6,7 +6,6 @@ angular.module('crescendoApp')
 
     $scope.tabs = [
       { state: 'home',  label: 'Home', active: true, isPublic: true },
-      { state: 'about', label: 'About', active: true, isPublic: true },
       { state: 'dashboard', label: 'Dashboard', active: true, isPublic: false }
     ];
 

@@ -35,7 +35,6 @@ module.exports = function(config) {
       'bower_components/chartist/dist/chartist.min.js',
       'bower_components/angular-chartist.js/dist/angular-chartist.js',
       'bower_components/angular-gravatar/build/angular-gravatar.js',
-      'bower_components/chartist-plugin-tooltip/dist/chartist-plugin-tooltip.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',

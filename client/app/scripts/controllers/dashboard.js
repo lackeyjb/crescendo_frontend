@@ -35,6 +35,7 @@ function ($scope, $state, AuthService, ScoreService) {
       console.log('Error');
     });
 
+            
   this.lineData = {
     labels: $scope.labels,
     series: [
