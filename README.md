@@ -6,7 +6,7 @@ The app is the final project for the web development immersive course at [Genera
 
 Crescendo was created by [Ricardo Cabrera](https://github.com/riccabrera) & [Bryan Lackey](https://github.com/lackeyjb).
 
-A separate back-end repo for this project can be found at [Crescendo Api](https://github.com/cabrera/crescendo_api).
+A separate back-end repo for this project can be found at [Crescendo Api](https://github.com/riccabrera/crescendo_api).
 
 ##Technologies Used
 * AngularJS 1.3.14
