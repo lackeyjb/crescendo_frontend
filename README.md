@@ -39,5 +39,5 @@ A separate back-end repo for this project can be found at [Crescendo Api](https:
 ##Links
 * [Site on Heroku](https://playcrescendo.herokuapp.com)
 * [Trello](https://trello.com/b/uV0OHlEU/crescendo)
-* [Github for API](https://github.com/riccabrera/crescendo_api)
+* [Github for front-end](https://github.com/lackeyjb/crescendo_frontend)
 * [Wireframes](https://moqups.com/wawasho/TCDwEPpj/)
