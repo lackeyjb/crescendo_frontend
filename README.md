@@ -1,4 +1,4 @@
-#[Crescendo](playcrescendo.herokuapp.com)
+#[Crescendo](https://playcrescendo.herokuapp.com/#/)
 ##Overview
 Crescendo is a web application that helps users learn music theory through playing simple games. 
 
