@@ -8,82 +8,83 @@ function ($state, $scope, AuthService, ScoreService) {
     $scope.userId = user.id;
   });
 
+  // Initializes game
   var game = new Phaser.Game(640, 480, Phaser.AUTO, 'gameview');
 
   var PhaserGame = function () {
 
-    this.player = null;
-    this.platforms = null;
-    this.sky = null;
-    this.bubbles = null;
-    $scope.score = 0;
+    // Initializes game assets
+    this.player      = null;
+    this.platforms   = null;
+    this.sky         = null;
+    this.bubbles     = null;
+
+    // Sets game score and lives
+    $scope.score     = 0;
     this.increaseScoreBy = 10;
-    this.scoreText = 0;
-    this.lives = 3;
-    this.livesText = 3;
+    this.scoreText   = 0;
+    this.lives       = 3;
+    this.livesText   = 3;
 
-    this.facing = 'left';
-    this.edgeTimer = 0;
-    this.jumpTimer = 0;
-
+    // Game controls
+    this.facing      = 'left';
+    this.edgeTimer   = 0;
+    this.jumpTimer   = 0;
     this.wasStanding = false;
-    this.cursors = null;
+    this.cursors     = null;
 
-    this.gameBubbleCollection = [];
+    // Sets musical scale
     this.cMajorScale = ['bubbleC', 'bubbleD', 'bubbleE', 'bubbleF', 'bubbleG',
                       'bubbleA', 'bubbleB'];
 
+    // Bubbles
+    this.gameBubbleCollection = [];
     this.bubbleBurst = null;
   };
 
   PhaserGame.prototype = {
 
     init: function () {
-
-      // this.game.renderer.renderSession.roundPixels = true;
-
       this.world.resize(640, 2000);
-
       this.physics.startSystem(Phaser.Physics.ARCADE);
-
       this.physics.arcade.gravity.y = 750;
       this.physics.arcade.skipQuadtree = false;
-
     },
 
+    // Load assets
     preload: function () {
-
-      this.load.image('trees', 'images/trees.png');
-      this.load.image('clouds', 'images/clouds.png');
-      this.load.image('bubbleA', 'images/a-bubble.png');
-      this.load.image('bubbleAsh', 'images/a-sh-bubble.png');
-      this.load.image('bubbleB', 'images/b-bubble.png');
-      this.load.image('bubbleC', 'images/c-bubble.png');
-      this.load.image('bubbleCsh', 'images/c-sh-bubble.png');
-      this.load.image('bubbleD', 'images/d-bubble.png');
-      this.load.image('bubbleDsh', 'images/d-sh-bubble.png');
-      this.load.image('bubbleE', 'images/e-bubble.png');
-      this.load.image('bubbleF', 'images/f-bubble.png');
-      this.load.image('bubbleFsh', 'images/f-sh-bubble.png');
-      this.load.image('bubbleG', 'images/g-bubble.png');
-      this.load.image('bubbleGsh', 'images/g-sh-bubble.png');
-      this.load.image('platform', 'images/moving_platform.png');
+      this.load.image('trees',        'images/trees.png');
+      this.load.image('clouds',       'images/clouds.png');
+      this.load.image('bubbleA',      'images/a-bubble.png');
+      this.load.image('bubbleAsh',    'images/a-sh-bubble.png');
+      this.load.image('bubbleB',      'images/b-bubble.png');
+      this.load.image('bubbleC',      'images/c-bubble.png');
+      this.load.image('bubbleCsh',    'images/c-sh-bubble.png');
+      this.load.image('bubbleD',      'images/d-bubble.png');
+      this.load.image('bubbleDsh',    'images/d-sh-bubble.png');
+      this.load.image('bubbleE',      'images/e-bubble.png');
+      this.load.image('bubbleF',      'images/f-bubble.png');
+      this.load.image('bubbleFsh',    'images/f-sh-bubble.png');
+      this.load.image('bubbleG',      'images/g-bubble.png');
+      this.load.image('bubbleGsh',    'images/g-sh-bubble.png');
+      this.load.image('platform',     'images/moving_platform.png');
       this.load.image('ice-platform', 'images/ice-platform.png');
-      this.load.audio('bubbleburst', 'audio/woodblock.mp3');
-      this.load.spritesheet('dude', 'images/crescendodude.png', 49.6, 68);
+      this.load.audio('bubbleburst',  'audio/woodblock.mp3');
+      this.load.spritesheet('dude',   'images/crescendodude.png', 49.6, 68);
     },
 
     create: function () {
-
+      //Creates background
       this.stage.backgroundColor = '#2f9acc';
-
       this.sky = this.add.tileSprite(0, 0, 640, 480, 'clouds');
       this.sky.fixedToCamera = true;
-
       this.add.sprite(0, 1906, 'trees');
 
+      // Enables platform physics
       this.platforms = this.add.physicsGroup();
 
+      // Creates platforms with random 
+      // horizontal velocities
       var x = 0;
       var y = 64;
 
@@ -91,7 +92,6 @@ function ($state, $scope, AuthService, ScoreService) {
 
         var type = i % 2 === 1 ? 'platform' : 'ice-platform';
         var platform = this.platforms.create(x, y, type);
-
         platform.body.velocity.x = this.rnd.between(100, 150);
 
         if (Math.random() > 0.5) {
@@ -108,23 +108,24 @@ function ($state, $scope, AuthService, ScoreService) {
       }
 
       this.platforms.setAll('body.allowGravity', false);
-
       this.platforms.setAll('body.immovable', true);
 
+      // Creates character
       this.player = this.add.sprite(320, 1952, 'dude');
 
+      // Sets character physics
       this.physics.arcade.enable(this.player);
-
+      this.player.body.setSize(45, 52, 0, 16);
       this.player.body.collideWorldBounds = true;
 
+      // Character animations
 
-      this.player.body.setSize(45, 52, 0, 16);
+      var playerFrames = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
+                        13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+                        
 
-      this.player.animations.add('left',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-                                   13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
-
-      this.player.animations.add('right',  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-                                   13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], 30, true);
+      this.player.animations.add('left',  playerFrames, 30, true); 
+      this.player.animations.add('right', playerFrames, 30, true); 
 
       this.camera.follow(this.player);
 
