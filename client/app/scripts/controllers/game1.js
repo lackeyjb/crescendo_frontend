@@ -77,6 +77,7 @@ function ($state, $scope, AuthService, ScoreService) {
     },
 
     create: function () {
+
       //Creates background
       this.stage.backgroundColor = '#2f9acc';
       this.sky = this.add.tileSprite(0, 0, 640, 480, 'clouds');
@@ -110,6 +111,7 @@ function ($state, $scope, AuthService, ScoreService) {
         y+= 104;
       }
 
+      // Configures platforms
       this.platforms.setAll('body.allowGravity', false);
       this.platforms.setAll('body.immovable', true);
 
@@ -122,46 +124,44 @@ function ($state, $scope, AuthService, ScoreService) {
       this.player.body.collideWorldBounds = true;
 
       // Character animations
-
       var playerFrames = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-                        13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
-                        
-
+                          13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];                    
       this.player.animations.add('left',  playerFrames, 30, true); 
       this.player.animations.add('right', playerFrames, 30, true); 
-
       this.camera.follow(this.player);
 
+      // Creates bubbles and bubble sound
       this.bubbleSpawn();
-
       this.bubbleBurst = game.add.audio('bubbleburst');
 
+      // Adds music
       this.music = game.add.audio('ragtime');
       this.music.play();
 
+      // Places game score
       this.scoreText = game.add.text(16, 16, 'score: 0', 
         { fontSize: '32px', fill: '#000' });
 
+      // Places game lives
       this.livesText = game.add.text(100, 40, 'lives: 3',
         { fontSize: '32px', fill: '#000' });
 
+      // Sets game controls
       this.cursors = this.input.keyboard.createCursorKeys();
       this.jump = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
 
+    
     wrapPlatform: function (platform) {
-
       if (platform.body.velocity.x < 0 && platform.x <= -160) {
         platform.x = 640;
       }
-
       else if (platform.body.velocity.x > 0 && platform.x >= 640) {
         platform.x = -160;
       }
     },
 
     setFriction: function (player, platform) {
-
       if (platform.key === 'ice-platform') {
         player.body.x -= platform.body.x - platform.body.prev.x;
       }
