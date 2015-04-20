@@ -1,4 +1,4 @@
-#[Crescendo](playcrescendo.herokuapp.com)
+#[Crescendo](https://playcrescendo.herokuapp.com/#/)
 ##Overview
 Crescendo is a web application that helps users learn music theory through playing simple games. 
 
@@ -6,7 +6,7 @@ The app is the final project for the web development immersive course at [Genera
 
 Crescendo was created by [Ricardo Cabrera](https://github.com/riccabrera) & [Bryan Lackey](https://github.com/lackeyjb).
 
-A separate back-end repo for this project can be found at [Crescendo Api](https://github.com/cabrera/crescendo_api).
+A separate back-end repo for this project can be found at [Crescendo Api](https://github.com/riccabrera/crescendo_api).
 
 ##Technologies Used
 * AngularJS 1.3.14
@@ -39,5 +39,5 @@ A separate back-end repo for this project can be found at [Crescendo Api](https:
 ##Links
 * [Site on Heroku](https://playcrescendo.herokuapp.com)
 * [Trello](https://trello.com/b/uV0OHlEU/crescendo)
-* [Github for API](https://github.com/cabrera/crescendo_api)
+* [Github for API](https://github.com/riccabrera/crescendo_api)
 * [Wireframes](https://moqups.com/wawasho/TCDwEPpj/)
