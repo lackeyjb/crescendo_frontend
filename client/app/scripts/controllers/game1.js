@@ -40,6 +40,8 @@ function ($state, $scope, AuthService, ScoreService) {
     // Bubbles
     this.gameBubbleCollection = [];
     this.bubbleBurst = null;
+
+    this.music = null;
   };
 
   PhaserGame.prototype = {
@@ -70,6 +72,7 @@ function ($state, $scope, AuthService, ScoreService) {
       this.load.image('platform',     'images/moving_platform.png');
       this.load.image('ice-platform', 'images/ice-platform.png');
       this.load.audio('bubbleburst',  'audio/woodblock.mp3');
+      this.load.audio('ragtime',      'audio/sunflowerslowdrag.mp3');
       this.load.spritesheet('dude',   'images/crescendodude.png', 49.6, 68);
     },
 
@@ -132,6 +135,9 @@ function ($state, $scope, AuthService, ScoreService) {
       this.bubbleSpawn();
 
       this.bubbleBurst = game.add.audio('bubbleburst');
+
+      this.music = game.add.audio('ragtime');
+      this.music.play();
 
       this.scoreText = game.add.text(16, 16, 'score: 0', 
         { fontSize: '32px', fill: '#000' });
