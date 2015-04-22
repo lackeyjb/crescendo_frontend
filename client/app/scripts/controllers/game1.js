@@ -8,7 +8,7 @@ function ($state, $scope, AuthService, ScoreService) {
     $scope.userId = user.id;
   });
 
-  // Initializes game
+  // Initializes game and 
   var game = new Phaser.Game(640, 480, Phaser.AUTO, 'gameview');
 
   var PhaserGame = function () {
@@ -21,10 +21,11 @@ function ($state, $scope, AuthService, ScoreService) {
 
     // Sets game score and lives
     $scope.score     = 0;
-    this.increaseScoreBy = 10;
+    this.totalScore  = 120;
     this.scoreText   = 0;
     this.lives       = 3;
     this.livesText   = 3;
+    this.pointsPerBubble = 10;
 
     // Game controls
     this.facing      = 'left';
@@ -38,8 +39,8 @@ function ($state, $scope, AuthService, ScoreService) {
                       'bubbleA', 'bubbleB'];
 
     // Bubbles
-    this.gameBubbleCollection = [];
-    this.bubbleBurst = null;
+    this.bubbleBurst            = null;
+    this.randomBubbleCollection = [];
 
     this.music = null;
   };
@@ -151,7 +152,7 @@ function ($state, $scope, AuthService, ScoreService) {
       this.jump = this.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     },
 
-    
+    // Platform positioning based on velocity
     wrapPlatform: function (platform) {
       if (platform.body.velocity.x < 0 && platform.x <= -160) {
         platform.x = 640;
@@ -169,48 +170,44 @@ function ($state, $scope, AuthService, ScoreService) {
 
     update: function () {
 
-      this.sky.tilePosition.y = -(this.camera.y * 0.7);
+      var badNoteScore  = this.badNotesArray().length * this.pointsPerBubble;
+      var goodNoteScore = this.totalScore - badNoteScore;
 
-      this.platforms.forEach(this.wrapPlatform, this);
-
-      this.physics.arcade.collide(this.player, this.
-        platforms, this.setFriction, null, this);
-
-      this.physics.arcade.collide(this.bubbles, this.platforms);
-
-      this.physics.arcade.collide(this.bubbles);
-
-      var goodNote = 120 - (this.badNotesArray().length * this.increaseScoreBy);
-
-      if ((this.lives > 0) && ($scope.score < goodNote)) {
-
-        this.physics.arcade.overlap(this.player, this.bubbles, this.collectBubble, null, this);
-
+      // Game over conditional 
+      if ((this.lives > 0) && ($scope.score < goodNoteScore)) {
+        // Allows player to collect bubbles
+        this.physics.arcade.overlap(this.player, this.bubbles, 
+                                    this.collectBubble, null, this);
       } else {
-
-        ScoreService.postScore($scope.userId, $scope.score).success(function () {
-          console.log('Score posted');
-        })
-        .error(function () {
-          console.log('Error, score did not post');
-        });
-        
+        // Game over and score posted to API
+        ScoreService.postScore($scope.userId, $scope.score);    
         game.destroy();
         $state.go('dashboard');
-      }
+      } 
 
-      var standing = this.player.body.blocked.down ||
-      this.player.body.touching.down;
+      // Repeats sky image as camera moves on y axis
+      this.sky.tilePosition.y = -(this.camera.y * 0.7);
 
+      // Calls platform positioning
+      this.platforms.forEach(this.wrapPlatform, this);
+
+      // Allows collision of world objects
+      this.physics.arcade.collide(this.bubbles);
+      this.physics.arcade.collide(this.bubbles, this.platforms);
+      this.physics.arcade.collide(this.player, this.platforms, 
+                                  this.setFriction, null, this);
+      
+      // Fixes score and lives text to camera view
       this.scoreText.x = this.camera.x;
       this.scoreText.y = this.camera.y;
-
       this.livesText.x = this.camera.x;
       this.livesText.y = this.camera.y + 30;
 
-
+      // Sets initial player velocity
       this.player.body.velocity.x = 0;
 
+
+      // Sets player sprite frames and velocity for game key controls
       if (this.cursors.left.isDown) {
 
         this.player.body.velocity.x = -200;
@@ -252,14 +249,19 @@ function ($state, $scope, AuthService, ScoreService) {
         }
       }
 
+      // Checks if character is touching a surface and controls jump time
+      var standing = this.player.body.blocked.down ||
+                     this.player.body.touching.down;
+
       if (!standing && this.wasStanding) {
 
         this.edgeTimer = this.time.time + 250;
       }
 
       if ((standing || this.time.time <= this.edgeTimer) &&
-        (this.cursors.up.isDown || this.jump.isDown) && this.time.time > this.jumpTimer) {
-
+          (this.cursors.up.isDown || this.jump.isDown) && 
+           this.time.time > this.jumpTimer) {
+  
         this.player.body.velocity.y = -500;
         this.jumpTimer = this.time.time + 750;
       }
@@ -269,57 +271,59 @@ function ($state, $scope, AuthService, ScoreService) {
 
     bubbleRandomizer: function() {
       return _.sample(['bubbleA', 'bubbleAsh', 'bubbleB', 'bubbleC', 'bubbleCsh', 'bubbleD', 
-                      'bubbleDsh', 'bubbleE', 'bubbleF', 'bubbleFsh', 'bubbleG', 'bubbleGsh']);
+                       'bubbleDsh', 'bubbleE', 'bubbleF', 'bubbleFsh', 'bubbleG', 'bubbleGsh']);
     },
 
     bubbleSpawn: function () {
       var self = this;
+
+      // Creates 12 bubbles with physics and groups them
       self.bubbles = game.add.group();
       self.bubbles.enableBody = true;
 
-
       for (var i = 0; i < 12; i++) {
         
+        // Sets each bubble's origin point
         var bubble = self.bubbles.create(i * 70, (self.camera.screenView.height + 1000), self.bubbleRandomizer());
 
-        this.gameBubbleCollection.push(bubble);
+        this.randomBubbleCollection.push(bubble);
       
+        // Randomizes each bubble's bounce
         bubble.body.bounce.y = 0.85 + Math.random() * 0.2;
 
         bubble.body.collideWorldBounds = true;
 
+        // Randomizes each bubble's gravity 
         bubble.body.gravity.y = Math.floor(Math.random() * (1 - 700 + 740)) - 740;
       }
     },
 
     collectBubble: function(player, bubble) {
 
+      // Removes bubble from view and plays pop sound
       bubble.kill();
       this.bubbleBurst.play();
 
+      // Criteria for increasing/decreasing score and lives
       if (_.contains(this.cMajorScale, bubble.key.toString())) {
-        $scope.score += this.increaseScoreBy;
+        $scope.score       += this.pointsPerBubble;
         this.scoreText.text = 'Score: ' + $scope.score;
       }
       else {
-        this.lives -= 1;
+        this.lives         -= 1;
         this.livesText.text = 'Lives: ' + this.lives;
       }
-
     },
 
     badNotesArray: function() {
-      var allBubbles = _.map(this.gameBubbleCollection, function (bubble) {
+      var allBubbles = _.map(this.randomBubbleCollection, function (bubble) {
         return bubble.key.toString();
       });
       return _.difference(allBubbles, this.cMajorScale);
     }  
-
-    // render: function () {
-    //   this.game.debug.body(this.player);
-    // }
   };
 
+  // Creates game state in DOM
   game.state.add('Game', PhaserGame, true);
 
 }]);
