@@ -35,21 +35,13 @@ angular
         url: '/dashboard',
         templateUrl: 'views/dashboard.html',
         controller: 'DashboardCtrl',
-        onEnter: ['$state', 'AuthService', function ($state, AuthService) {
-          if (!AuthService.isAuthenticated()) {
-            $state.go('home');
-          }
-        }]
+        onEnter: authenticationCheck()
       })
       .state('game1', {
         url: '/game1',
         templateUrl: 'views/game1.html',
         controller: 'Game1Ctrl',
-        onEnter: ['$state', 'AuthService', function ($state, AuthService) {
-          if (!AuthService.isAuthenticated()) {
-            $state.go('home');
-          }
-        }]
+        onEnter: authenticationCheck()
       })
       .state('login', {
         url: '/login',
@@ -63,6 +55,14 @@ angular
       });
       
       $urlRouterProvider.otherwise('/');
+
+    function authenticationCheck () {
+      ['$state', 'AuthService', function ($state, AuthService) {
+        if (!AuthService.isAuthenticated()) {
+          $state.go('home');
+        }
+      }];
+    }
   })
   .config( ['gravatarServiceProvider', function (gravatarServiceProvider) {
     gravatarServiceProvider.defaults = { 'default': 'mm' };

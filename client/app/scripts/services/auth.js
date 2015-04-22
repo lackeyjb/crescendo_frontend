@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('crescendoApp')
-.service('AuthService', ['$http', function($http) {
+// This service authenticates the user
 
+angular.module('crescendoApp')
+.service('AuthService', ['$http', function ($http) {
   var that = this;
 
   that.currentUser = null;
@@ -11,21 +12,9 @@ angular.module('crescendoApp')
     return !!that.currentUser;
   };
 
-  that.getSession = function() {
-    var deferred = $http.get('/api/sessions/');
-    deferred.success(function(user) {
-      console.log('getSession returned user = ' + JSON.stringify(user));
-      that.currentUser = user;
-    });
-    return deferred;
-  };
-
-  that.getSession();
-
   that.register = function(user) {
 
-    var deferred = $http.post('/api/users/',
-      { user: user });
+    var deferred = $http.post('/api/users/', { user: user });
     deferred.success(function(user) {
       that.currentUser = user;
     });
@@ -34,8 +23,7 @@ angular.module('crescendoApp')
 
   that.login = function(session) {
 
-    var deferred = $http.post('/api/sessions/', 
-      { session: session });
+    var deferred = $http.post('/api/sessions/', { session: session });
     deferred.success(function(user) {
       that.currentUser = user;
     });
@@ -50,4 +38,15 @@ angular.module('crescendoApp')
     });
     return deferred;
   };
+
+  that.getSession = function() {
+
+    var deferred = $http.get('/api/sessions/');
+    deferred.success(function(user) {
+      that.currentUser = user;
+    });
+    return deferred;
+  };  
+
+  that.getSession();
 }]);
