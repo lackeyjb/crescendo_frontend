@@ -1,4 +1,53 @@
-@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:700);
+$cr-dark-blue: #2c3e50; 
+
+.cr-body {
+  background-color: white;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+@media screen and(max-width:768px) {
+  .navbar.cr-navbar {
+    padding: 0px !important;
+    -webkit-transition: padding .3s;
+    -moz-transition: padding .3s;
+    transition: padding .3s;
+    .cr-logo {
+      margin-top: 0px !important;
+      font-size: 1.3em !important;
+      -webkit-transition: font-size .1s;
+      -moz-transition: font-size .1s;
+      transition: font-size .1s;
+    }
+  }
+}
+
+.navbar.cr-navbar {
+  padding: 25px;
+  -webkit-transition: padding .3s;
+  -moz-transition: padding .3s;
+  transition: padding .3s;
+  background-color: $cr-dark-blue;
+  .cr-logo {
+    font-size: 2em;
+    -webkit-transition: font-size .3s;
+    -moz-transition: font-size .3s;
+    transition: font-size .3s;
+    font-weight: 700;
+    margin-left: 0px !important; /* Left margin reset */
+    text-transform: uppercase;
+    word-spacing: 30px;
+    letter-spacing: 1.6px;
+  }
+  .cr-navbar-right {
+    margin-right: 0px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  a:hover {
+    color: #18bc9c !important;
+  }
+}
 
 .dashboard-first-row {
   margin-top: 30px;
@@ -41,11 +90,6 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
 
 #remove-border {
   border-radius: 0px;
-}
-
-#logo {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 2em;
 }
 
 #gameview {

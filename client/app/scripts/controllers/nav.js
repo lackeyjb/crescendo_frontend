@@ -5,13 +5,13 @@ angular.module('crescendoApp')
   function ($scope, $rootScope, $state, $browser, AuthService) {
 
     $scope.tabs = [
-      { state: 'home',      label: 'Home',      active: true, isPublic: true  },
-      { state: 'dashboard', label: 'Dashboard', active: true, isPublic: false }
+      { state: 'home',      label: 'Home',      isPublic: true  },
+      { state: 'dashboard', label: 'Dashboard', isPublic: false }
     ];
 
-    $scope.getTabClass = function(tab) {
-      return tab.active ? 'active' : '';
-    };
+    // $scope.getTabClass = function(tab) {
+    //   return tab.active ? 'active' : '';
+    // };
 
     $scope.showTab = function(tab) {
       return tab.isPublic || $scope.isSignedIn();
