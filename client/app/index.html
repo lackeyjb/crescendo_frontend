@@ -8,8 +8,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" 
-          href="bower_components/chartist/dist/chartist.min.css" />
+    <link rel="stylesheet" href="bower_components/chartist/dist/chartist.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -29,28 +28,30 @@
     <div id="remove-border" class="navbar navbar-inverse cr-navbar" 
                             role="navigation" 
                             ng-controller="NavCtrl">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" 
-                                data-toggle="collapse" 
-                                data-target="#js-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand cr-logo" ui-sref="home">crescendo</a>
-        </div>
+      <div class="container">
+        <div class="row">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" 
+                                  data-toggle="collapse" 
+                                  data-target="#js-navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand cr-logo" ui-sref="home">crescendo</a>
+          </div>
 
-        <div class="collapse navbar-collapse" id="js-navbar-collapse">
-          <ul class="nav navbar-nav navbar-right cr-navbar-right">
-            <li ng-repeat="tab in tabs" ng-show="showTab(tab)">
-              <a ui-sref="{{ tab.state }}">{{ tab.label }}</a>
-            </li>
-            <li ng-hide="isSignedIn()"><a ui-sref="login">Login</a></li>
-            <li ng-hide="isSignedIn()"><a ui-sref="register">Sign Up</a></li>
-            <li ng-show="isSignedIn()"><a ng-click="logout()">Log Out</a></li>
-          </ul>
+          <div id="js-navbar-collapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right cr-navbar-right">
+              <li ng-repeat="tab in tabs" ng-show="showTab(tab)">
+                <a ui-sref="{{ tab.state }}">{{ tab.label }}</a>
+              </li>
+              <li ng-hide="isSignedIn()"><a ui-sref="login">Login</a></li>
+              <li ng-hide="isSignedIn()"><a ui-sref="register">Sign Up</a></li>
+              <li ng-show="isSignedIn()"><a ng-click="logout()">Log Out</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
