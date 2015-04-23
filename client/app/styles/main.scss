@@ -1,5 +1,9 @@
 $cr-dark-blue: #2c3e50; 
 
+body {
+  padding-top: 150px;
+}
+
 .cr-body {
   background-color: white;
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -19,6 +23,30 @@ $cr-dark-blue: #2c3e50;
       transition: font-size .1s;
     }
   }
+}
+
+@media screen and(min-width:768px) {
+    .navbar-fixed-top {
+        padding: 25px 0;
+        -webkit-transition: padding .3s;
+        -moz-transition: padding .3s;
+        transition: padding .3s;
+    }
+
+    .navbar-fixed-top .cr-logo {
+        font-size: 2em;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        transition: all .3s;
+    }
+
+    .navbar-fixed-top.navbar-shrink {
+        padding: 0 !important;
+    }
+
+    .navbar-fixed-top.navbar-shrink .navbar-brand {
+        font-size: 1.5em !important;
+    }
 }
 
 .navbar.cr-navbar {
@@ -45,6 +73,10 @@ $cr-dark-blue: #2c3e50;
     letter-spacing: 1px;
   }
   a:hover {
+    color: #18bc9c !important;
+  }
+
+  a:focus {
     color: #18bc9c !important;
   }
 }
