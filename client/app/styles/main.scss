@@ -1,4 +1,32 @@
-@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:700);
+$cr-dark-blue: #2c3e50; 
+
+.cr-body {
+  background-color: white;
+  font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+.navbar.cr-navbar {
+  height: 110px;
+  background-color: $cr-dark-blue;
+
+  .cr-logo {
+    font-size: 2em;
+    font-weight: 700;
+    /* Left margin reset */
+    margin-left: 90px !important;
+    margin-top: 25px;
+    text-transform: uppercase;
+    word-spacing: 30px;
+    letter-spacing: 1.6px
+  }
+  .cr-navbar-right {
+    margin-top: 23px;
+    margin-right: 0px;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+}
 
 .dashboard-first-row {
   margin-top: 30px;
@@ -41,11 +69,6 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
 
 #remove-border {
   border-radius: 0px;
-}
-
-#logo {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 2em;
 }
 
 #gameview {

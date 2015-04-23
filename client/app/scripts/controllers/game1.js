@@ -327,11 +327,3 @@ function ($state, $scope, AuthService, ScoreService) {
   game.state.add('Game', PhaserGame, true);
 
 }]);
-
-
-
-
-
-
-
-
