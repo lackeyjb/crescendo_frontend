@@ -1,5 +1,9 @@
 $cr-dark-blue: #2c3e50; 
 
+body {
+  padding-top: 150px;
+}
+
 .cr-body {
   background-color: white;
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -66,6 +70,10 @@ $cr-dark-blue: #2c3e50;
     letter-spacing: 1px;
   }
   a:hover {
+    color: #18bc9c !important;
+  }
+
+  a:focus {
     color: #18bc9c !important;
   }
 }
