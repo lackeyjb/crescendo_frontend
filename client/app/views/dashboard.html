@@ -1,46 +1,52 @@
-<div class="text-center">
-  <div class="row">
-    <div class="col-md-2">
-      <img gravatar-src="user.email" gravatar-size="150">
-      <br>
-      <a href="https://en.gravatar.com/site/login" class="gravatar-info">
-        Upload image with Gravatar
-      </a>
-      <h4>Hello, {{ user.username }}!</h4>
-    </div>
-    <!-- Chart -->
-    <!-- <div class="col-md-6 col-md-offset-2">
-      <div class="panel panel-default">
-        <div class="panel-body dashboard-chart">
-          <div ng-controller="DashboardCtrl as chartist">
-            <chartist class="ct-chart" 
-                      chartist-data="chartist.lineData" 
-                      chartist-chart-type="Line"
-                      chartist-chart-options="chartist.options"
-                      chartist-events="chartist.events">
-            </chartist>
+<section>
+  <div class="text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <img gravatar-src="user.email" gravatar-size="150">
+          <br>
+          <a href="https://en.gravatar.com/site/login" class="gravatar-info">
+            Upload image with Gravatar
+          </a>
+          <h4>Hello, {{ user.username }}!</h4>
+        </div>
+        <!-- Chart -->
+        <div class="col-md-6 col-md-offset-2">
+          <div class="panel panel-default">
+            <div class="panel-body dashboard-chart">
+              <div ng-controller="DashboardCtrl as chartist">
+                <chartist class="ct-chart" 
+                          chartist-data="chartist.lineData" 
+                          chartist-chart-type="Line"
+                          chartist-chart-options="chartist.options"
+                          chartist-events="chartist.events">
+                </chartist>
+              </div>
+              <h5 style="color: black;">Average Score: {{ avgScore }}</h5>
+            </div>
           </div>
-          <h5 style="color: black;">Average Score: {{ avgScore }}</h5>
         </div>
       </div>
-    </div> -->
-</div>
+    </div>
+  </div>
+</section>
 
 <!-- Game -->
 <section class="game1-section">
-
+  <div class="container">
     <div class="row">
       <div class="text-center ">
         <img src="/images/game-thumbnail.jpeg" 
              width="300px" 
-             class="image-responsive"
+             class="image-responsive center-block"
              alt="Game thumbnail"
              ng-click="goToGame()">
       </div>
     </div>
     <div class="row">
       <div class="text-center game1-text">
-        <h2>Tutorial</h2>
+        <h2 class="tutorial-title">Tutorial</h2>
+        <h2 class="tutorial-title dash">————————</h2>
         <p>
           Collect all the bubbles that contain the correct scale notes
           and avoid the bad ones
@@ -51,7 +57,7 @@
         </button>
       </div>
     </div>
-
+  </div>
 </section>
 
   <!-- <div class="col-md-3"> -->
