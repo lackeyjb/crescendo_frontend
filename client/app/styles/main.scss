@@ -1,8 +1,23 @@
-$cr-dark-blue: #2c3e50; 
+$cr-dark-blue:  #2c3e50; 
+$cr-light-blue: #1D83C1;
 $cr-aquamarine: #18BC9C;
+
+html {
+  overflow-x: hidden;
+}
 
 body {
   padding-top: 150px;
+  -webkit-transition: padding-top .3s;
+  -moz-transition: padding-top .3s;
+  transition: padding-top .3s;
+  overflow-x: hidden;
+}
+
+@media screen and(max-width:768px) {
+  body {
+    padding-top: 100px;
+  }
 }
 
 .cr-body {
@@ -10,6 +25,7 @@ body {
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
+/**** Navbar ****/
 @media screen and(max-width:768px) {
   .navbar.cr-navbar {
     padding: 0px !important;
@@ -83,51 +99,81 @@ body {
     letter-spacing: 1px;
   }
   a:hover {
-    color: #18bc9c !important;
+    color: $cr-aquamarine !important;
   }
 
   a:focus {
-    color: #18bc9c !important;
+    color: $cr-aquamarine !important;
   }
 }
 
-.dashboard-first-row {
-  margin-top: 30px;
+/**** Dashboard Top****/
+.top-section {
+  padding: 30px 100px 100px 100px;
+  .gravatar-info {
+    font-size: 12px;
+  }
+  .cr-chart-panel{
+    border: none;
+    .cr-chart {
+      background-color: $cr-light-blue;
+      border: none;
+      padding: 35px;
+      .inner-chart {
+        background-color: white;
+      }
+      .chart-text {
+        color: white;
+        font-size: 25px;
+        margin-top: 35px;
+      }
+    }
+  }
 }
 
-.dashboard-chart {
-  background-color: #BDBDBD;
-  border-radius: 2px;
-}
-
-.dashboard-game1 {
-  background-color: #78C2A6;
-  border-radius: 5px;
-}
-
-.dashboard-second-row {
-  margin-top: 25px;
+/**** Game 1 ****/
+.game1-section {
+  color: white;
+  background-color: $cr-aquamarine;
+  margin-top: 15px;
+  width: 100%;
+  padding: 80px;
+  .game1-text {
+    font-size: 30px;
+    margin: 10px 0 0 0;
+    .tutorial-title {
+      font-size: 1.5em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .dash {
+      margin-top: -13px;
+    }
+    p {
+      font-size: 0.67em;
+      font-weight: 400;
+      letter-spacing: 0.3px
+    }
+  }
+  .play-button {
+    background-color: transparent;
+    border: 2px solid white;
+    padding: 10px;
+    margin-top: 30px;
+    border-radius: 3px;
+    font-size: 1.2em;
+    width: 39%;
+    &:hover {
+      background-color: white;
+      border-color: white;
+      color: $cr-dark-blue;
+      transition: background-color .3s;
+    }
+  }
 }
 
 button.btn.btn-primary.btn-lg.learn-more-btn {
   margin-bottom: 10px;
-}
-
-.gravatar-info {
-  font-size: 12px;
-}
-
-.play-button-1 {
-  background-color: #D70206;
-  border-color: #D70206;
-  padding: 10px;
-  border-radius: 3px;
-  font-size: 1.2em;
-  width: 40%;
-}
-
-.game1-panel {
-  width: 98.7%;
 }
 
 #remove-border {
@@ -137,10 +183,6 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
 #gameview {
   margin-left: 47px;
   margin-top: 40px;
-}
-
-img {
-  border-radius: 2px;
 }
 
 .custom-panel-header {
@@ -159,8 +201,6 @@ img {
   width: 100%;
   padding: 80px;
 }
-
-
 
 
 
