@@ -14,12 +14,6 @@ body {
   overflow-x: hidden;
 }
 
-@media screen and(max-width:768px) {
-  body {
-    padding-top: 100px;
-  }
-}
-
 .cr-body {
   background-color: white;
   font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -27,6 +21,9 @@ body {
 
 /**** Navbar ****/
 @media screen and(max-width:768px) {
+  body {
+    padding-top: 100px;
+  }
   .navbar.cr-navbar {
     padding: 0px !important;
     -webkit-transition: padding .3s;
@@ -40,9 +37,20 @@ body {
       transition: font-size .1s;
     }
   }
-
+  .tutorial-title {
+    text-decoration: none;
+    border-bottom: 5px solid white;
+    padding-bottom: 20px;
+    width: 100%;
+  }
   .sign-form {
     width: 100%;
+  }
+
+  .game1-section {
+    .game1-block {
+      display: none;
+    }
   }
 }
 
@@ -53,25 +61,27 @@ body {
     -moz-transition: padding .3s;
     transition: padding .3s;
   }
-
   .navbar-fixed-top .cr-logo {
     font-size: 2em;
     -webkit-transition: all .3s;
     -moz-transition: all .3s;
     transition: all .3s;
   }
-
   .navbar-fixed-top.navbar-shrink {
     padding: 0 !important;
   }
-
   .navbar-fixed-top.navbar-shrink .navbar-brand {
     font-size: 1.5em !important;
   }
-
   .sign-form {
     position: relative;
     width: 185%;
+  }
+  .tutorial-title {
+      border-bottom: 5px solid white;
+      width: 50%;
+      margin-left: 25%;
+      padding-bottom: 20px;
   }
 }
 
@@ -140,11 +150,13 @@ body {
   padding: 80px;
   .game1-text {
     font-size: 30px;
-    margin: 10px 0 0 0;
+    margin: 25px 0 15px 0;
     .tutorial-title {
       font-size: 1.5em;
       font-weight: 700;
       text-transform: uppercase;
+      margin-top: 80px;
+      margin-bottom: 50px;
     }
     .dash {
       margin-top: -13px;
@@ -155,14 +167,19 @@ body {
       letter-spacing: 0.3px
     }
   }
+  .game1-block {
+    margin-top: 30px;
+    max-width: 300px;
+  }
   .play-button {
     background-color: transparent;
     border: 2px solid white;
     padding: 10px;
-    margin-top: 30px;
+    margin-top: 50px;
     border-radius: 3px;
     font-size: 1.2em;
     width: 39%;
+    min-width: 120px;
     &:hover {
       background-color: white;
       border-color: white;
