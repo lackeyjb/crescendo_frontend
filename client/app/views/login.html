@@ -1,38 +1,48 @@
-<div class="text-center">
-  <h1>Sign In</h1>
-</div>
 <br>
-<br>
-<div class="col-sm-4"></div>
-<div class="col-sm-7">
-  <form name="loginForm"ng-submit="login()" novalidate>
-    <div class="form-group col-sm-7">      
-      <input type="email"
-             name="email"
-             class="form-control"
-             placeholder="Email"
-             ng-model="session.email"
-             required>      
-    </div>
-    <div class="form-group col-sm-7">
-      <input type="password"
-             name="password"
-             class="form-control"
-             placeholder="Password"
-             ng-model="session.password"
-             required>
-    </div>
-    <br>
-    <div class="form-group col-sm-2-offset col-sm-7">
-      <button type="submit"
-              class="btn btn-primary"
-              ng-disabled="loginForm.$invalid">Submit</button>
+<div class="row">
+  <div class="col-sm-4"></div>
+  <div class="col-sm-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading custom-panel-header">
+        <h1 class="panel-title text-center login-signup-text">Login</h1>
+      </div>
       <br>
-      <br>
-      <a ui-sref="register">Not a member?</a>
+      <div class="panel-body">
+        
+        <div class="col-sm-7">
+          <form name="loginForm" ng-submit="login()" novalidate>
+            <div class="form-group sign-form">      
+              <input type="email"
+                     name="email"
+                     class="form-control"
+                     placeholder="Email"
+                     ng-model="session.email"
+                     required>      
+            </div>
+            <div class="form-group sign-form">
+              <input type="password"
+                     name="password"
+                     class="form-control"
+                     placeholder="Password"
+                     ng-model="session.password"
+                     required>
+            </div>
+            <br>
+            <div class="form-group col-sm-2-offset">
+              <button type="submit"
+                      class="btn btn-info"
+                      ng-disabled="loginForm.$invalid">Submit</button>
+              <br>
+              <br>
+              <a ui-sref="register">Not a member?</a>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-  </form>
+  </div>
 </div>
+
   
 
 
