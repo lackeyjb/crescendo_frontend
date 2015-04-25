@@ -88,51 +88,39 @@ body {
   }
 }
 
-/**** Dashboard ****/
-.cr-dashboard-row-1 {
-  float: none;
+/**** Container reset ****/
+.container-fluid.cr-container {
+  padding: 0px;
 }
 
+/**** Dashboard ****/
 .gravatar-info {
   font-size: 12px;
-}
-
-.cr-tabset {
-  background-color: yellow;
-  .cr-tab{
-    color: black;
-  }
 }
 
 .dashboard-chart {
   background-color: #1D83C1;
 }
 
-.panel-body.dashboard-game1 {
+/**** Game 1 ****/
+.game1-section {
+  color: white;
   background-color: #18BC9C;
-  padding: 45px;
-}
-
-.dashboard-second-row {
   margin-top: 15px;
+  width: 100%;
+  padding: 95px;
+  .play-button {
+    background-color: #D70206;
+    border-color: #D70206;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 1.2em;
+    width: 40%;
+  }
 }
 
 button.btn.btn-primary.btn-lg.learn-more-btn {
   margin-bottom: 10px;
-}
-
-
-.play-button-1 {
-  background-color: #D70206;
-  border-color: #D70206;
-  padding: 10px;
-  border-radius: 3px;
-  font-size: 1.2em;
-  width: 40%;
-}
-
-.game1-panel {
-  width: 100%;
 }
 
 #remove-border {

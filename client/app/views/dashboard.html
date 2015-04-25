@@ -1,4 +1,4 @@
-<div class="text-center cr-dashboard-row-1">
+<div class="text-center">
   <div class="row">
     <div class="col-md-2">
       <img gravatar-src="user.email" gravatar-size="150">
@@ -8,11 +8,6 @@
       </a>
       <h4>Hello, {{ user.username }}!</h4>
     </div>
-
-  <tabset class="col-md-6 cr-tabset">
-    <tab heading="Title 1" class="cr-tab">Content 1</tab>
-    <tab heading="Title 2" class="cr-tab">Content 2</tab>
-  </tabset>
     <!-- Chart -->
     <!-- <div class="col-md-6 col-md-offset-2">
       <div class="panel panel-default">
@@ -32,29 +27,25 @@
 </div>
 
 <!-- Game -->
-<section class="cr-top-section">
-  <div class="row dashboard-second-row">
-    <div class="panel panel-default game1-panel">
-      <div class="panel-body dashboard-game1">
-        <div class="col-md-4">
-          <img src="/images/game-thumbnail.jpeg" 
-               width="300px" 
-               class="image-responsive"
-               alt="Game thumbnail"
-               ng-click="goToGame()">
-        </div>
-        <div class="col-md-5 col-md-offset-3 game1-text">
-          <h2>Tutorial</h2>
-          <p>
-            Collect all the bubbles that contain the correct scale notes
-            and avoid the bad ones
-          </p>
-          <p>Try to reach the top<p>
-          <button ng-click="goToGame()" class="btn-danger play-button-1">
-            Play game
-          </button>
-        </div>
-      </div>
+<section class="game1-section">
+  <div class="row">
+    <div class="col-md-4">
+      <img src="/images/game-thumbnail.jpeg" 
+           width="300px" 
+           class="image-responsive"
+           alt="Game thumbnail"
+           ng-click="goToGame()">
+    </div>
+    <div class="col-md-5 col-md-offset-3 game1-text">
+      <h2>Tutorial</h2>
+      <p>
+        Collect all the bubbles that contain the correct scale notes
+        and avoid the bad ones
+      </p>
+      <p>Try to reach the top<p>
+      <button ng-click="goToGame()" class="btn-danger play-button">
+        Play game
+      </button>
     </div>
   </div>
 </section>
