@@ -1,4 +1,6 @@
-$cr-dark-blue: #2c3e50; 
+$cr-dark-blue:  #2c3e50; 
+$cr-light-blue: #1D83C1;
+$cr-aquamarine: #18BC9C;
 
 html {
   overflow-x: hidden;
@@ -97,27 +99,42 @@ body {
     letter-spacing: 1px;
   }
   a:hover {
-    color: #18bc9c !important;
+    color: $cr-aquamarine !important;
   }
 
   a:focus {
-    color: #18bc9c !important;
+    color: $cr-aquamarine !important;
   }
 }
 
-/**** Dashboard ****/
-.gravatar-info {
-  font-size: 12px;
-}
-
-.dashboard-chart {
-  background-color: #1D83C1;
+/**** Dashboard Top****/
+.top-section {
+  padding: 30px 100px 100px 100px;
+  .gravatar-info {
+    font-size: 12px;
+  }
+  .cr-chart-panel{
+    border: none;
+    .cr-chart {
+      background-color: $cr-light-blue;
+      border: none;
+      padding: 35px;
+      .inner-chart {
+        background-color: white;
+      }
+      .chart-text {
+        color: white;
+        font-size: 25px;
+        margin-top: 35px;
+      }
+    }
+  }
 }
 
 /**** Game 1 ****/
 .game1-section {
   color: white;
-  background-color: #18BC9C;
+  background-color: $cr-aquamarine;
   margin-top: 15px;
   width: 100%;
   padding: 80px;
@@ -169,8 +186,8 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
 }
 
 .custom-panel-header {
-  background-color: #2C3E50 !important;
-  border-color: #2C3E50 !important;
+  background-color: $cr-dark-blue !important;
+  border-color:     $cr-dark-blue !important;
 }
 
 .login-signup-text {

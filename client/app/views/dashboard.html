@@ -1,4 +1,4 @@
-<section>
+<section class="top-section">
   <div class="text-center">
     <div class="container">
       <div class="row">
@@ -12,17 +12,17 @@
         </div>
         <!-- Chart -->
         <div class="col-md-6 col-md-offset-2">
-          <div class="panel panel-default">
-            <div class="panel-body dashboard-chart">
-              <div ng-controller="DashboardCtrl as chartist">
-                <chartist class="ct-chart" 
+          <div class="panel panel-default cr-chart-panel">
+            <div class="panel-body cr-chart">
+              <div ng-controller="DashboardCtrl as chartist" class="inner-chart">
+                <chartist class="ct-chart"
                           chartist-data="chartist.lineData" 
                           chartist-chart-type="Line"
                           chartist-chart-options="chartist.options"
                           chartist-events="chartist.events">
                 </chartist>
               </div>
-              <h5 style="color: black;">Average Score: {{ avgScore }}</h5>
+              <h5 class="chart-text">Average Score: {{ avgScore }}</h5>
             </div>
           </div>
         </div>
