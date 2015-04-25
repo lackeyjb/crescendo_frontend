@@ -1,32 +1,60 @@
-<div class="container">  
-  <div class="row">
-    <section class="jumbotron" ng-cloak>
-
-      <h1>cre&#183;scen&#183;do</h1>
-
-      <h2>/kr&#477; 'SHen, d&#333/</h2>
-
-      <br>
-
-      <p>
-        1. <i>A musical passage characterized by such an increase.</i>
-      </p>
-
-      <h3>Learn music theory by playing fun and simple games!</h3>
-
-      <br>
+<section class="main-custom" ng-cloak>
+  <div class=" text-center">  
+    <div class="row">
       
-      <p ng-hide="isSignedIn()"><a class="btn btn-primary btn-lg" ui-sref="register">Sign Up</a></p>
-      <p ng-show="isSignedIn()"><a class="btn btn-primary btn-lg" ui-sref="dashboard">Go to Dashboard</a></p>
-    </section>
+
+        <h1 class="pronunciation">cre&#183;scen&#183;do</h1>
+
+        <h2>/kr&#477; 'SHen, d&#333/</h2>
+
+        
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+          <h3 class="text-left">
+            <i>1. A gradual increase in sound, or knowledge.</i>
+          </h3>
+
+          <h3 class="text-left">Learn music theory by playing fun and simple games!</h3>
+          
+        <br>
+        <br>
+        <p ng-hide="isSignedIn()"><a class="btn btn-primary btn-lg center-block" ui-sref="register">Sign Up</a></p>
+        <p ng-show="isSignedIn()"><a class="btn btn-primary btn-lg center-block" ui-sref="dashboard">Go to Dashboard</a></p>
+        </div>
+    </div>
   </div>
-</div>
+</section>
+
 
 <section class="about">
   <div class="container">
     <div class="row">
-      <div class="triangle center-block"></div>
-      <h1>Hello world</h1>
+      <div class="triangle-jumbotron"></div>
+      <br>
+      <br>
+      <br>
+      <h1 class="text-center about-title">About Us</h1>
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+        <h1 class="text-center"><i>Bryan Lackey</i></h1>
+        <img src="http://www.fripons.info/wp-content/uploads/2015/03/profile-pictures-funny-Fdfx.jpg" class="img-responsive profile-img center-block">
+        <p>
+          I recently completed a fully immersive course in software development through General Assembly in Atlanta, GA. The languages and technologies I use are: Ruby, Javascript, Rails, AngularJS, and ExpressJS. I embrace object-oriented design and TDD.
+        </p>
+        <p>
+          Aside from developing I enjoy playing guitar, reading great books, and watching lots of movies/tv. On weekends you can find me exploring the city with my fiancée, eating some really good bbq, or hiking in the mountains.
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h1 class="text-center"><i>Ric Cabrera</i></h1>
+        <img src="http://www.eeew.net/images/funny-profile-pictures-03.jpg" class="img-responsive profile-img center-block">
+        <p>
+          I recently completed a fully immersive course in software development through General Assembly in Atlanta, GA. The languages and technologies I use are: Ruby, Javascript, Rails, AngularJS, and ExpressJS. I embrace object-oriented design and TDD.
+        </p>
+        <p>
+          Aside from developing I enjoy playing guitar, reading great books, and watching lots of movies/tv. On weekends you can find me exploring the city with my fiancée, eating some really good bbq, or hiking in the mountains.
+        </p>
+      </div>
     </div>
   </div>
 </section>
