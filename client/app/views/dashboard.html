@@ -1,20 +1,73 @@
-<div class="row dashboard-first-row">
-  <div class="col-md-3">
-    <img gravatar-src="user.email" gravatar-size="150">
-    <br>
-    <a href="https://en.gravatar.com/site/login" class="gravatar-info">
-      Upload image with Gravatar
-    </a>
-    <h4>Hello, {{ user.username }}!</h4>
+<section class="top-section">
+  <div class="text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2">
+          <img gravatar-src="user.email" gravatar-size="150">
+          <br>
+          <a href="https://en.gravatar.com/site/login" class="gravatar-info">
+            Upload image with Gravatar
+          </a>
+          <h4>Hello, {{ user.username }}!</h4>
+        </div>
+        <!-- Chart -->
+        <div class="col-md-6 col-md-offset-2">
+          <div class="panel panel-default cr-chart-panel">
+            <div class="panel-body cr-chart">
+              <div ng-controller="DashboardCtrl as chartist" class="inner-chart">
+                <chartist class="ct-chart"
+                          chartist-data="chartist.lineData" 
+                          chartist-chart-type="Line"
+                          chartist-chart-options="chartist.options"
+                          chartist-events="chartist.events">
+                </chartist>
+              </div>
+              <h5 class="chart-text">Average Score: {{ avgScore }}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-md-3">
+</section>
+
+<!-- Game -->
+<section class="game1-section">
+  <div class="container">
+    <div class="row">
+      <div class="text-center ">
+        <img src="/images/game-thumbnail.jpeg" 
+             width="300px" 
+             class="image-responsive center-block"
+             alt="Game thumbnail"
+             ng-click="goToGame()">
+      </div>
+    </div>
+    <div class="row">
+      <div class="text-center game1-text">
+        <h2 class="tutorial-title">Tutorial</h2>
+        <h2 class="tutorial-title dash">————————</h2>
+        <p>
+          Collect all the bubbles that contain the correct scale notes
+          and avoid the bad ones
+        </p>
+        <p>Try to reach the top<p>
+        <button ng-click="goToGame()" class="btn-danger play-button">
+          Play game
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- <div class="col-md-3"> -->
     <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary btn-lg learn-more-btn" 
+    <!-- <button type="button" class="btn btn-primary btn-lg learn-more-btn" 
                           data-toggle="modal" 
-                          data-target="#myModal">Learn more</button>
+                          data-target="#myModal">Learn more</button> -->
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" 
+    <!-- <div class="modal fade" id="myModal" 
                             tabindex="-1" 
                             role="dialog" 
                             aria-labelledby="myModalLabel" 
@@ -47,48 +100,5 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Chart -->
-  <div class="col-md-5 col-md-offset-1">
-    <div class="panel panel-default">
-      <div class="panel-body dashboard-chart">
-        <div ng-controller="DashboardCtrl as chartist">
-          <chartist class="ct-chart" 
-                    chartist-data="chartist.lineData" 
-                    chartist-chart-type="Line"
-                    chartist-chart-options="chartist.options"
-                    chartist-events="chartist.events">
-          </chartist>
-        </div>
-        <h5 style="color: black;">Average Score: {{ avgScore }}</h5>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="row dashboard-second-row">
-  <div class="panel panel-default game1-panel">
-    <div class="panel-body dashboard-game1">
-      <div class="col-md-4">
-        <img src="/images/game-thumbnail.jpeg" 
-             width="300px" 
-             class="image-responsive"
-             alt="Game thumbnail"
-             ng-click="goToGame()">
-      </div>
-      <div class="col-md-5 col-md-offset-3 game1-text">
-        <h2>Tutorial</h2>
-        <p>
-          Collect all the bubbles that contain the correct scale notes
-          and avoid the bad ones
-        </p>
-        <p>Try to reach the top<p>
-        <button ng-click="goToGame()" class="btn-danger play-button-1">
-          Play game
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+    </div> -->
+  <!-- </div> -->
