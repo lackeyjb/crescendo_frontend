@@ -1,4 +1,5 @@
 $cr-dark-blue: #2c3e50; 
+$cr-aquamarine: #18BC9C;
 
 body {
   padding-top: 150px;
@@ -143,13 +144,23 @@ img {
 }
 
 .custom-panel-header {
-  background-color: #2C3E50 !important;
-  border-color: #2C3E50 !important;
+  background-color: $cr-dark-blue !important;
+  border-color:     $cr-dark-blue !important;
 }
 
 .login-signup-text {
   font-size: 1.5em !important;
 }
+
+.about {
+  color: white;
+  background-color: $cr-aquamarine;
+  margin-top: 75px;
+  width: 100%;
+  padding: 80px;
+}
+
+
 
 
 
