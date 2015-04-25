@@ -202,5 +202,15 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
   padding: 80px;
 }
 
+.triangle {
+  width: 0;
+  height: 0;
+  text-indent: -9999px;
+  border-top: 40px solid white;
+  border-right: 40px solid transparent;
+  border-left: 40px solid transparent;
+  margin-top: -85px;
+}
+
 
 
