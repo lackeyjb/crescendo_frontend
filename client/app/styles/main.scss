@@ -1,10 +1,15 @@
 $cr-dark-blue: #2c3e50; 
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   padding-top: 150px;
   -webkit-transition: padding-top .3s;
   -moz-transition: padding-top .3s;
   transition: padding-top .3s;
+  overflow-x: hidden;
 }
 
 @media screen and(max-width:768px) {
@@ -89,9 +94,9 @@ body {
 }
 
 /**** Container reset ****/
-.container-fluid.cr-container {
-  padding: 0px;
-}
+// .container-fluid.cr-container {
+//   padding: 0px;
+// }
 
 /**** Dashboard ****/
 .gravatar-info {
@@ -108,7 +113,7 @@ body {
   background-color: #18BC9C;
   margin-top: 15px;
   width: 100%;
-  padding: 95px;
+  // padding: 95px;
   .play-button {
     background-color: #D70206;
     border-color: #D70206;
