@@ -13,6 +13,7 @@ function ($state, $scope, AuthService, ScoreService) {
 
   var PhaserGame = function () {
 
+
     // Initializes game assets
     this.player      = null;
     this.platforms   = null;
@@ -78,6 +79,10 @@ function ($state, $scope, AuthService, ScoreService) {
     },
 
     create: function () {
+      // Centers game canvas
+      this.game.scale.pageAlignHorizontally = true;
+      this.game.scale.pageAlignVertically = true;
+      this.game.scale.refresh();
 
       //Creates background
       this.stage.backgroundColor = '#2f9acc';
