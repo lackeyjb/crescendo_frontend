@@ -38,26 +38,38 @@ body {
       transition: font-size .1s;
     }
   }
+
+  .sign-form {
+    width: 100%;
+  }
 }
 
 @media screen and(min-width:768px) {
   .navbar-fixed-top {
-      padding: 25px 0;
-      -webkit-transition: padding .3s;
-      -moz-transition: padding .3s;
-      transition: padding .3s;
+    padding: 25px 0;
+    -webkit-transition: padding .3s;
+    -moz-transition: padding .3s;
+    transition: padding .3s;
   }
+
   .navbar-fixed-top .cr-logo {
-      font-size: 2em;
-      -webkit-transition: all .3s;
-      -moz-transition: all .3s;
-      transition: all .3s;
+    font-size: 2em;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    transition: all .3s;
   }
+
   .navbar-fixed-top.navbar-shrink {
-      padding: 0 !important;
+    padding: 0 !important;
   }
+
   .navbar-fixed-top.navbar-shrink .navbar-brand {
-      font-size: 1.5em !important;
+    font-size: 1.5em !important;
+  }
+
+  .sign-form {
+    position: relative;
+    width: 185%;
   }
 }
 
@@ -137,3 +149,11 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
   margin-top: 40px;
 }
 
+.custom-panel-header {
+  background-color: #2C3E50 !important;
+  border-color: #2C3E50 !important;
+}
+
+.login-signup-text {
+  font-size: 1.5em !important;
+}
