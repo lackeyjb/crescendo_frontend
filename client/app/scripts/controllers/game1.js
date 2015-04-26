@@ -183,9 +183,9 @@ function ($state, $scope, AuthService, ScoreService) {
       var goodNoteScore = this.totalScore - badNoteScore;
 
       // Game over conditional 
-      if ((this.lives > 0) && ($scope.score < goodNoteScore)) {
+      if ((this.lives > 0) ) {
         // Allows player to collect bubbles
-        this.physics.arcade.overlap(this.player, this.bubbles, 
+        this.physics.arcade.overlap(this.player, this.randomBubbleCollection, 
                                     this.collectBubble, null, this);
       } else {
         // Game over and score posted to API
@@ -194,6 +194,12 @@ function ($state, $scope, AuthService, ScoreService) {
         $state.go('dashboard');
       } 
 
+      if (($scope.score === (goodNoteScore - 10))) {
+          this.bubbleSpawn();
+          this.physics.arcade.overlap(this.player, this.randomBubbleCollection, 
+                                    this.collectBubble, null, this);
+        }
+
       // Repeats sky image as camera moves on y axis
       this.sky.tilePosition.y = -(this.camera.y * 0.7);
 
@@ -201,8 +207,10 @@ function ($state, $scope, AuthService, ScoreService) {
       this.platforms.forEach(this.wrapPlatform, this);
 
       // Allows collision of world objects
-      this.physics.arcade.collide(this.bubbles);
-      this.physics.arcade.collide(this.bubbles, this.platforms);
+      this.physics.arcade.collide(this.randomBubbleCollection);
+      this.physics.arcade.collide(this.badNotesArray);
+      this.physics.arcade.collide(this.randomBubbleCollection, this.platforms);
+      this.physics.arcade.collide(this.badNotesArray, this.platforms);
       this.physics.arcade.collide(this.player, this.platforms, 
                                   this.setFriction, null, this);
       
@@ -293,7 +301,7 @@ function ($state, $scope, AuthService, ScoreService) {
       for (var i = 0; i < 12; i++) {
         
         // Sets each bubble's origin point
-        var bubble = self.bubbles.create(i * 70, (self.camera.screenView.height + 1000), self.bubbleRandomizer());
+        var bubble = self.bubbles.create(i * 70, (self.camera.screenView.height + 600), self.bubbleRandomizer());
 
         this.randomBubbleCollection.push(bubble);
       

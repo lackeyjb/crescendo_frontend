@@ -58,6 +58,10 @@ body {
       display: none;
     }  
   }
+
+  .triangle-jumbotron {
+    margin: -80px 35% 0 !important;
+  }
 }
 
 @media screen and(min-width:768px) {
@@ -102,6 +106,10 @@ body {
     width: 50%;
     margin-left: 25%;
     padding-bottom: 20px;
+  }
+
+  .triangle-jumbotron {
+    margin: -80px 45% 0 !important;
   }
 }
 
@@ -257,7 +265,6 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
   border-top: 40px solid #598E98;
   border-right: 40px solid transparent;
   border-left: 40px solid transparent;
-  margin: -80px 45% 0 !important;
 }
 
 .profile-img {
