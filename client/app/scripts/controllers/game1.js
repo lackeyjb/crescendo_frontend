@@ -4,6 +4,10 @@ angular.module('crescendoApp')
 .controller('Game1Ctrl', [ '$state', '$scope', 'AuthService', 'ScoreService', 
 function ($state, $scope, AuthService, ScoreService) {
 
+  $scope.$on('$destroy', function () {
+    game.destroy();
+  });
+  
   AuthService.getSession().success(function(user) {
     $scope.userId = user.id;
   });
