@@ -41,20 +41,21 @@ body {
       transition: font-size .1s;
     }
   }
+  .pronunciation {
+    font-size: 3em;
+  }
+  .sign-form {
+    width: 100%;
+  }
+  .cr-chart-panel {
+    display: none;
+  }
   .tutorial-title {
     text-decoration: none;
     border-bottom: 5px solid white;
     padding-bottom: 20px;
     width: 100%;
   }
-  .sign-form {
-    width: 100%;
-  }
-
-  .pronunciation {
-    font-size: 3em;
-  }
-
   .game1-section {
     .game1-block {
       display: none;
@@ -85,11 +86,10 @@ body {
   .navbar-fixed-top.navbar-shrink .navbar-brand {
     font-size: 1.5em !important;
   }
-  .sign-form {
-    position: relative;
-    width: 185%;
+  .pronunciation {
+    font-family: 'Lora', serif;
+    font-size: 4em;
   }
-
   .about-title {
     text-decoration: none;
     border-bottom: 5px solid white;
@@ -97,19 +97,19 @@ body {
     width: 50%;
     margin-left: 25%;
   }
-
-  .pronunciation {
-    font-family: 'Lora', serif;
-    font-size: 4em;
+  .sign-form {
+    position: relative;
+    width: 185%;
   }
- 
+  .avg-score {
+    display: none; 
+  }
   .tutorial-title {
     border-bottom: 5px solid white;
     width: 50%;
     margin-left: 25%;
     padding-bottom: 20px;
   }
-
   .triangle-jumbotron {
     margin: -80px 45% 0 !important;
   }
@@ -152,6 +152,18 @@ body {
   padding: 30px 100px 100px 100px;
   .gravatar-info {
     font-size: 12px;
+  }
+  .dashboard-greeting {
+    color: black;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 1.5em;
+  }
+  .avg-score {
+    color: black;
+    font-size: 1.3em;
+    margin-bottom: -20px
   }
   .cr-chart-panel{
     border: none;
