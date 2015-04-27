@@ -1,8 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Lora:700);
 
-$cr-dark-blue:  #2c3e50; 
-$cr-light-blue: #1D83C1;
-$cr-aquamarine: #18BC9C;
+$cr-dark-blue:   #0C2742; 
+$cr-medium-blue: #1D83C1;
+$cr-light-blue:  #6BC2D3;
+$cr-dark-green:  #095345;
+$cr-aquamarine:  #00DBB1;
 
 html {
   overflow-x: hidden;
@@ -154,7 +156,7 @@ body {
   .cr-chart-panel{
     border: none;
     .cr-chart {
-      background-color: $cr-light-blue;
+      background-color: $cr-medium-blue;
       border: none;
       padding: 35px;
       .inner-chart {
@@ -234,7 +236,29 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
   font-size: 1.5em !important;
 }
 
-/**** About page section ****/
+/**** Main page ****/
+.main-custom {
+  background-color: $cr-light-blue;
+  width: 100%;
+  height: 100%;
+  padding: 80px;
+  margin-top: -100px;
+  font-size: 1em;
+  .pronunciation {
+    margin-top: 55px;
+  }
+  .main-button {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background-color: $cr-dark-green;
+    border-color: $cr-dark-green;
+    &:hover {
+      background-color: $cr-dark-green;
+      border-color: $cr-dark-green;
+    }
+  }
+}
+
 .about {
   color: white;
   background-color: $cr-aquamarine;
@@ -262,7 +286,7 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
   width: 0;
   height: 0;
   text-indent: -9999px;
-  border-top: 40px solid #598E98;
+  border-top: 40px solid $cr-light-blue;
   border-right: 40px solid transparent;
   border-left: 40px solid transparent;
 }
@@ -272,16 +296,6 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
   max-width: 226px;
   margin: 20px 0 20px 0;
   border-radius: 25px;
-}
-
-.main-custom {
-  background-color: #598E98;
-  width: 100%;
-  height: 100%;
-  padding: 80px;
-  margin-top: -100px;
-  padding-bottom: 250px;
-  font-size: 1em;
 }
 
 
