@@ -4,7 +4,7 @@ $cr-dark-blue:   #0C2742;
 $cr-medium-blue: #1D83C1;
 $cr-light-blue:  #6BC2D3;
 $cr-dark-green:  #095345;
-$cr-aquamarine:  #00DBB1;
+$cr-aquamarine:  #22D8B5;
 
 html {
   overflow-x: hidden;
@@ -253,8 +253,8 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
     background-color: $cr-dark-green;
     border-color: $cr-dark-green;
     &:hover {
-      background-color: $cr-dark-green;
-      border-color: $cr-dark-green;
+      background-color: #08866E;
+      border-color: #08866E;
     }
   }
 }
