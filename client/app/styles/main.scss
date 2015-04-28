@@ -169,6 +169,10 @@ body {
       }
     }
   }
+
+  .user-welcome {
+    color: $cr-aquamarine;
+  }
 }
 
 /**** Game 1 ****/
@@ -308,6 +312,12 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
   a:hover i {
     color: #095345;
   }
+}
+
+.box-shadow {
+  -webkit-box-shadow: 7px 7px 14px 0px rgba(50, 50, 50, 0.55) !important;
+  -moz-box-shadow:    7px 7px 14px 0px rgba(50, 50, 50, 0.55) !important;
+  box-shadow:         7px 7px 14px 0px rgba(50, 50, 50, 0.55) !important;
 }
 
 

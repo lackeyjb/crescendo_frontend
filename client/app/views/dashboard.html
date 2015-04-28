@@ -8,11 +8,13 @@
           <a href="https://en.gravatar.com/site/login" class="gravatar-info">
             Upload image with Gravatar
           </a>
-          <h4>Hello, {{ user.username }}!</h4>
+          <h4 class="user-welcome">Welcome back, {{ user.username }}!</h4>
+          <br>
+          <button class="btn btn-danger" ng-click="goToGame()">Play game</button>
         </div>
         <!-- Chart -->
         <div class="col-md-6 col-md-offset-2">
-          <div class="panel panel-default cr-chart-panel">
+          <div class="panel panel-default cr-chart-panel box-shadow">
             <div class="panel-body cr-chart">
               <div ng-controller="DashboardCtrl as chartist" class="inner-chart">
                 <chartist class="ct-chart"
