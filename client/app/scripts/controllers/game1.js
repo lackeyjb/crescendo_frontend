@@ -301,7 +301,7 @@ function ($state, $scope, AuthService, ScoreService) {
       for (var i = 0; i < 12; i++) {
         
         // Sets each bubble's origin point
-        var bubble = self.bubbles.create(i * 70, (self.camera.screenView.height + 600), self.bubbleRandomizer());
+        var bubble = self.bubbles.create(i * 70, (self.camera.screenView.height + 700), self.bubbleRandomizer());
 
         this.randomBubbleCollection.push(bubble);
       
