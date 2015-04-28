@@ -41,20 +41,25 @@ body {
       transition: font-size .1s;
     }
   }
+  .pronunciation {
+    font-size: 3em;
+  }
+  .bryan-contact-icons {
+    margin-top: 40px;
+    margin-bottom: 50px;
+  }
+  .sign-form {
+    width: 100%;
+  }
+  .cr-chart-panel {
+    display: none;
+  }
   .tutorial-title {
     text-decoration: none;
     border-bottom: 5px solid white;
     padding-bottom: 20px;
     width: 100%;
   }
-  .sign-form {
-    width: 100%;
-  }
-
-  .pronunciation {
-    font-size: 3em;
-  }
-
   .game1-section {
     .game1-block {
       display: none;
@@ -85,11 +90,10 @@ body {
   .navbar-fixed-top.navbar-shrink .navbar-brand {
     font-size: 1.5em !important;
   }
-  .sign-form {
-    position: relative;
-    width: 185%;
+  .pronunciation {
+    font-family: 'Lora', serif;
+    font-size: 4em;
   }
-
   .about-title {
     text-decoration: none;
     border-bottom: 5px solid white;
@@ -97,19 +101,19 @@ body {
     width: 50%;
     margin-left: 25%;
   }
-
-  .pronunciation {
-    font-family: 'Lora', serif;
-    font-size: 4em;
+  .sign-form {
+    position: relative;
+    width: 185%;
   }
- 
+  .avg-score {
+    display: none; 
+  }
   .tutorial-title {
     border-bottom: 5px solid white;
     width: 50%;
     margin-left: 25%;
     padding-bottom: 20px;
   }
-
   .triangle-jumbotron {
     margin: -80px 45% 0 !important;
   }
@@ -153,6 +157,17 @@ body {
   .gravatar-info {
     font-size: 12px;
   }
+  .dashboard-greeting {
+    color: black;
+    margin-bottom: 30px;
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 1.5em;
+  }
+  .avg-score {
+    color: black;
+    font-size: 1.3em;
+  }
   .cr-chart-panel{
     border: none;
     .cr-chart {
@@ -168,10 +183,6 @@ body {
         margin-top: 35px;
       }
     }
-  }
-
-  .user-welcome {
-    color: $cr-aquamarine;
   }
 }
 
@@ -274,6 +285,9 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
     font-weight: 700;
     text-transform: uppercase;
   }
+  .ric-contact-icons {
+    margin-top: 51px;
+  }
 }
 
 .triangle {
@@ -305,12 +319,12 @@ button.btn.btn-primary.btn-lg.learn-more-btn {
 .contact-icons {
  
   a i { 
-    color: #0C2742;
+    color: $cr-dark-blue;
     padding: 2px;
   }
 
   a:hover i {
-    color: #095345;
+    color: $cr-dark-green;
   }
 }
 
